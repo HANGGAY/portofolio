@@ -1,20 +1,20 @@
 "use client";
-
+import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowDown, MessageCircle, Linkedin, Github } from "lucide-react";
-import Image from "next/image";
 import { profile } from "@/data/profile";
 import { useLanguage } from "@/components/providers/language-provider";
-import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { CountStat } from "@/components/motion/count-stat";
+import { GooeyButton } from "@/components/reactbits/GooeyButton";
+import Ferrofluid from "@/components/reactbits/Ferrofluid";
+
+const Lanyard = dynamic(() => import("@/components/reactbits/Lanyard"), { ssr: false, loading: () => <div className="h-[420px] lg:h-[520px] w-full animate-pulse rounded-3xl bg-slate-100" /> });
 
 function useTypingEffect(text: string, speed = 45) {
   const [display, setDisplay] = useState("");
-
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect -- resets the typewriter when the source text (locale) changes
     setDisplay("");
     let i = 0;
     const interval = setInterval(() => {
@@ -24,7 +24,6 @@ function useTypingEffect(text: string, speed = 45) {
     }, speed);
     return () => clearInterval(interval);
   }, [text, speed]);
-
   return display;
 }
 
@@ -32,115 +31,76 @@ export function Hero() {
   const { t, tr } = useLanguage();
   const role = tr(profile.role);
   const typed = useTypingEffect(role);
-
   return (
-    <section
-      id="hero"
-      className="relative overflow-hidden bg-white pt-14 pb-24 sm:pt-20 sm:pb-32"
-    >
-      {/* background layers */}
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-[linear-gradient(135deg,#ffffff_0%,#f8fafc_55%,#eef2ff_100%)]" />
-        <div
-          className="absolute inset-0 opacity-[0.35]"
-          style={{
-            backgroundImage:
-              "linear-gradient(#e2e8f0 1px, transparent 1px), linear-gradient(90deg, #e2e8f0 1px, transparent 1px)",
-            backgroundSize: "56px 56px",
-            maskImage: "radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 100%)",
-          }}
-        />
-        <div className="absolute -top-24 right-[-10%] h-[480px] w-[480px] rounded-full bg-blue-500/20 blur-[120px]" />
-        <div className="absolute bottom-[-10%] left-[-10%] h-[420px] w-[420px] rounded-full bg-cyan-400/15 blur-[120px]" />
+    <section id="hero" className="relative overflow-hidden bg-white pt-10 pb-16 sm:pt-14 sm:pb-24">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute inset-0 opacity-[0.55]">
+          <Ferrofluid
+            colors={["#3f3f46", "#71717a", "#a1a1aa", "#e4e4e7"]}
+            speed={0.28}
+            scale={1.9}
+            turbulence={0.85}
+            fluidity={0.12}
+            rimWidth={0.22}
+            sharpness={2.2}
+            shimmer={1.2}
+            glow={1.7}
+            opacity={0.95}
+            flowDirection="down"
+            mouseInteraction
+            mouseStrength={0.9}
+            mouseRadius={0.42}
+          />
+        </div>
+        <div className="absolute inset-0 bg-white/72 backdrop-blur-[0.5px]" />
+        <div className="absolute inset-0 opacity-[0.18]" style={{ backgroundImage: "linear-gradient(#cbd5e1 1px, transparent 1px), linear-gradient(90deg, #cbd5e1 1px, transparent 1px)", backgroundSize: "56px 56px", maskImage: "radial-gradient(ellipse 90% 70% at 50% 0%, black 30%, transparent 82%)" }} />
       </div>
 
-      <Container className="grid items-center gap-16 lg:grid-cols-[1fr_440px] lg:gap-12">
-        <div>
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55 }}
-            className="mb-6 inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3.5 py-1.5 text-xs font-semibold text-emerald-700"
-          >
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
-            </span>
+      <Container className="relative grid items-center gap-8 lg:grid-cols-[1.05fr_480px] lg:gap-6">
+        <div className="order-2 lg:order-1">
+          <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }} className="mb-6 inline-flex items-center gap-2 rounded-full border border-slate-900/10 bg-white/80 px-3.5 py-1.5 text-xs font-semibold text-slate-700 shadow-sm backdrop-blur">
+            <span className="relative flex h-2 w-2"><span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" /><span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" /></span>
             {tr(profile.badge)}
+            <span className="hidden sm:inline text-slate-400">·</span>
+            <span className="hidden sm:inline font-medium text-slate-500">{profile.location}</span>
           </motion.div>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.05 }}
-            className="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl lg:leading-[1.05]"
-          >
+          <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.05 }} className="text-[2.2rem] font-extrabold tracking-[-0.03em] text-slate-900 sm:text-5xl lg:text-[3.4rem] lg:leading-[0.98]">
             {profile.name}
           </motion.h1>
 
-          <div className="mt-4 flex h-8 items-center text-lg font-semibold text-blue-700 sm:text-xl">
-            <span>{typed}</span>
+          <div className="mt-4 flex h-8 items-center text-[1.05rem] font-semibold text-blue-700 sm:text-xl">
+            <span className="truncate">{typed}</span>
             <span className="ml-0.5 inline-block h-5 w-[2px] animate-pulse bg-blue-600" />
           </div>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.15 }}
-            className="mt-6 max-w-xl text-base leading-relaxed text-slate-600 sm:text-lg"
-          >
+          <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.15 }} className="mt-6 max-w-[640px] text-[0.98rem] leading-relaxed text-slate-600 sm:text-[1.05rem]">
             {tr(profile.description)}
           </motion.p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.22 }}
-            className="mt-9 flex flex-wrap items-center gap-3"
-          >
-            <Button asChild variant="primary" size="lg">
-              <a href={profile.resumeUrl} download>
-                <ArrowDown className="h-4 w-4" />
-                {t("hero.cta1")}
-              </a>
-            </Button>
-            <Button asChild variant="secondary" size="lg">
-              <a href="#contact">
-                <MessageCircle className="h-4 w-4" />
-                {t("hero.cta2")}
-              </a>
-            </Button>
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.22 }} className="mt-9 flex flex-wrap items-center gap-3">
+            <GooeyButton variant="primary" size="lg" onClick={() => { const a = document.createElement("a"); a.href = profile.resumeUrl; a.download = ""; document.body.appendChild(a); a.click(); a.remove(); }}>
+              <ArrowDown className="h-4 w-4" />
+              {t("hero.cta1")}
+            </GooeyButton>
+            <GooeyButton variant="secondary" size="lg" onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}>
+              <MessageCircle className="h-4 w-4" />
+              {t("hero.cta2")}
+            </GooeyButton>
             <div className="ml-1 flex items-center gap-2">
-              <a
-                href={profile.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn"
-                className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 text-slate-500 transition-colors hover:border-blue-600 hover:text-blue-600"
-              >
-                <Linkedin className="h-4.5 w-4.5" />
+              <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-500 shadow-sm transition-colors hover:border-slate-900 hover:text-slate-900">
+                <Linkedin className="h-[18px] w-[18px]" />
               </a>
-              <a
-                href={profile.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="GitHub"
-                className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 text-slate-500 transition-colors hover:border-blue-600 hover:text-blue-600"
-              >
-                <Github className="h-4.5 w-4.5" />
+              <a href={profile.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-500 shadow-sm transition-colors hover:border-slate-900 hover:text-slate-900">
+                <Github className="h-[18px] w-[18px]" />
               </a>
             </div>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="mt-14 grid grid-cols-2 gap-6 border-t border-slate-200 pt-8 sm:grid-cols-4"
-          >
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }} className="mt-10 grid grid-cols-2 gap-6 border-t border-slate-200/70 pt-8 sm:grid-cols-4">
             {profile.metrics.map((m, i) => (
               <div key={i}>
-                <div className="text-2xl font-extrabold text-slate-900 sm:text-3xl">
+                <div className="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
                   <CountStat value={m.value} suffix={m.suffix} />
                 </div>
                 <div className="mt-1 text-xs font-medium text-slate-500 sm:text-sm">{tr(m.label)}</div>
@@ -149,59 +109,18 @@ export function Hero() {
           </motion.div>
         </div>
 
-        {/* executive glass card */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.92, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          className="relative mx-auto w-full max-w-[420px] lg:mx-0"
-        >
-          <div className="absolute -inset-6 -z-10 rounded-[2rem] bg-gradient-to-br from-blue-600/25 via-cyan-400/15 to-transparent blur-2xl" />
-          <div className="relative overflow-hidden rounded-3xl border border-white/60 bg-white/70 p-8 shadow-2xl shadow-slate-900/10 backdrop-blur-xl">
-            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.6),transparent_60%)]" />
-            <div className="relative">
-              <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-2xl bg-gradient-to-br from-slate-900 to-slate-700 text-2xl font-bold text-white shadow-lg shadow-slate-900/20">
-                {profile.avatarSrc ? (
-                  <Image
-                    src={profile.avatarSrc}
-                    alt={profile.name}
-                    width={96}
-                    height={96}
-                    className="h-full w-full rounded-2xl object-cover"
-                    priority
-                  />
-                ) : (
-                  profile.initials
-                )}
-              </div>
-              <h3 className="mt-5 text-center text-lg font-bold text-slate-900">{profile.name}</h3>
-              <p className="text-center text-sm text-slate-500">{tr(profile.cardTitle)}</p>
-
-              <div className="mx-auto mt-3 flex w-fit items-center gap-2 rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700">
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                {tr(profile.status)}
-              </div>
-
-              <div className="mt-7 space-y-4 border-t border-slate-200/70 pt-6">
-                {profile.cardStats.map((stat, i) => (
-                  <div key={i}>
-                    <div className="mb-1.5 flex items-center justify-between text-xs">
-                      <span className="font-medium text-slate-600">{tr(stat.label)}</span>
-                      <span className="font-bold text-slate-900">{stat.display}</span>
-                    </div>
-                    <div className="h-1.5 w-full overflow-hidden rounded-full bg-slate-200/70">
-                      <motion.div
-                        className={`h-full rounded-full bg-gradient-to-r ${stat.gradient}`}
-                        initial={{ width: 0 }}
-                        whileInView={{ width: `${Math.min(stat.percent, 100)}%` }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1, delay: 0.3 + i * 0.15, ease: "easeOut" }}
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+        <motion.div initial={{ opacity: 0, scale: 0.94, y: 18 }} animate={{ opacity: 1, scale: 1, y: 0 }} transition={{ duration: 0.75, delay: 0.18, ease: [0.22, 1, 0.36, 1] }} className="order-1 lg:order-2 relative mx-auto w-full max-w-[460px] lg:mx-0 lg:max-w-none">
+          <div className="pointer-events-none absolute -inset-8 -z-10 rounded-[2.5rem] bg-gradient-to-br from-blue-600/20 via-cyan-400/10 to-transparent blur-2xl" />
+          <div className="relative">
+            <Lanyard
+              position={[0, 0, 20]}
+              gravity={[0, -40, 0]}
+              frontImage="/images/hanggaylanyard.jpeg"
+              backImage="/images/hanggaylanyard.jpeg"
+              imageFit="cover"
+              lanyardWidth={1}
+            />
+            <div className="pointer-events-none absolute bottom-2 left-1/2 -translate-x-1/2 rounded-full bg-slate-900/80 px-3 py-1 text-[10px] font-semibold tracking-wide text-white/90 backdrop-blur">DRAG · TARIK KARTU</div>
           </div>
         </motion.div>
       </Container>

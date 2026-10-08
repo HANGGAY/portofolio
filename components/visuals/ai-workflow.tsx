@@ -80,13 +80,7 @@ export function AIWorkflow() {
         </motion.g>
       ))}
 
-      {/* traveling data packet */}
-      <motion.circle
-        r="4"
-        fill="#06B6D4"
-        animate={{ cx: [60, 460], cy: 150 }}
-        transition={{ duration: 3.2, repeat: Infinity, ease: "linear" }}
-      />
+      <motion.circle r="4" fill="#06B6D4" cy={150} animate={{ cx: [60, 460] }} transition={{ duration: 3.2, repeat: Infinity, ease: "linear" }} />
     </svg>
   );
 }

@@ -2,21 +2,21 @@ import type { ProjectEntry } from "@/types";
 
 export const projects: ProjectEntry[] = [
   {
-    badge: "ITSM Platform",
-    title: { id: "MIT System — Dinarsmu Group", en: "MIT System — Dinarsmu Group" },
+    badge: "ITSM Platform · 6 Sites",
+    title: { id: "MIT System — DINARSMU INDUSTRIES", en: "MIT System — DINARSMU INDUSTRIES" },
     challenge: {
-      id: "Operasi IT terfragmentasi tanpa visibilitas, tracking insiden, atau kontrol aset terpusat di 5 site.",
-      en: "Fragmented IT operations with no visibility, incident tracking, or centralized asset control across 5 sites.",
+      id: "Operasi IT terfragmentasi di 6 site tanpa visibilitas, tracking insiden, atau kontrol aset terpusat — mengandalkan spreadsheet/WhatsApp/email.",
+      en: "Fragmented IT operations across 6 sites with no visibility, incident tracking, or centralized asset control — relying on spreadsheets/WhatsApp/email.",
     },
     solution: {
-      id: "Membangun sistem manajemen IT terpadu — aset, tiket insiden, assessment, SPK, dan lisensi software.",
-      en: "Built an integrated IT management system — assets, incident tickets, assessments, work orders, and software licensing.",
+      id: "Membangun MIT System dari nol — Asset Management, Ticketing & Incident, Assessment, Service Request, SPK & License Management — plus template Mikrotik/VLAN/OS-deployment yang menstandardisasi setup network/OS/backup.",
+      en: "Built the MIT System from scratch — Asset Management, Ticketing & Incident, Assessments, Service Requests, Work Orders (SPK) & License Management — plus Mikrotik/VLAN/OS-deployment templates standardizing network/OS/backup setup.",
     },
     result: {
-      id: "Downtime IT turun ±40% · Transparansi & kontrol layanan meningkat signifikan",
-      en: "IT downtime reduced ±40% · Service transparency & control significantly improved",
+      id: "214 tiket tertangani · 92% assessment (49/53) & service request (47/51) selesai · Downtime ↓~40% (Des 2025–Sep) · Single platform 6 site untuk governance & SLA",
+      en: "214 tickets handled · 92% assessments (49/53) & service requests (47/51) closed · Downtime ↓~40% (Dec 2025–Sep) · Single 6-site platform for governance & SLA",
     },
-    tech: ["Laravel", "PHP", "MySQL", "ITIL", "ISO 27001"],
+    tech: ["Laravel", "PHP", "MySQL", "ITIL", "ISO 27001", "Mikrotik", "VLAN"],
   },
   {
     badge: "Cloud Infrastructure",

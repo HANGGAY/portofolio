@@ -1,5 +1,5 @@
 "use client";
-
+import dynamic from "next/dynamic";
 import { getIcon } from "@/lib/icons";
 import { about } from "@/data/about";
 import { useLanguage } from "@/components/providers/language-provider";
@@ -7,14 +7,19 @@ import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { FadeIn } from "@/components/motion/fade-in";
 
+const Plasma = dynamic(() => import("@/components/reactbits/Plasma"), { ssr: false });
+
 export function About() {
   const { t, tr } = useLanguage();
-
   return (
-    <section id="about" className="bg-slate-50 py-24 sm:py-32">
-      <Container>
+    <section id="about" className="relative isolate overflow-hidden bg-white py-24 sm:py-32">
+      <div className="pointer-events-none absolute inset-0 -z-10">
+        <Plasma color="#a3a3a3" speed={0.7} direction="forward" scale={1.2} opacity={0.85} mouseInteractive={false} renderScale={0.55} maxDpr={1.5} targetFps={60} iterations={60} lightMode />
+        <div className="absolute inset-0 bg-white/62" />
+        <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: "linear-gradient(#0f172a 1px, transparent 1px), linear-gradient(90deg, #0f172a 1px, transparent 1px)", backgroundSize: "48px 48px" }} />
+      </div>
+      <Container className="relative z-10">
         <SectionHeading eyebrow={t("about.label")} title={t("about.title")} />
-
         <div className="grid gap-14 lg:grid-cols-[1.6fr_1fr]">
           <div>
             <div className="space-y-5">
@@ -24,17 +29,16 @@ export function About() {
                 </FadeIn>
               ))}
             </div>
-
             <div className="mt-10 grid gap-4 sm:grid-cols-2">
               {about.values.map((v, i) => {
                 const Icon = getIcon(v.icon);
                 return (
                   <FadeIn key={i} delay={0.1 + i * 0.08}>
-                    <div className="group rounded-2xl border border-slate-200 bg-white p-5 transition-all duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-lg hover:shadow-blue-900/5">
-                      <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600 transition-colors group-hover:bg-blue-600 group-hover:text-white">
+                    <div className="group rounded-2xl border border-slate-200 bg-white/90 p-5 shadow-sm backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:border-slate-900/10 hover:shadow-lg">
+                      <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-slate-900 text-white transition-colors group-hover:bg-blue-600 group-hover:border-blue-600">
                         <Icon className="h-5 w-5" />
                       </div>
-                      <h4 className="font-bold text-slate-900">{tr(v.title)}</h4>
+                      <h4 className="font-bold tracking-tight text-slate-900">{tr(v.title)}</h4>
                       <p className="mt-1.5 text-sm leading-relaxed text-slate-500">{tr(v.description)}</p>
                     </div>
                   </FadeIn>
@@ -42,42 +46,24 @@ export function About() {
               })}
             </div>
           </div>
-
           <FadeIn delay={0.15}>
             <div className="rounded-2xl border border-slate-200 bg-white p-7 shadow-sm">
-              <div className="mb-2 text-xs font-bold uppercase tracking-wider text-slate-500">
-                {t("about.edu_label")}
-              </div>
+              <div className="mb-2 text-xs font-bold uppercase tracking-widest text-slate-500">{t("about.edu_label")}</div>
               <div className="font-bold text-slate-900">{about.education.institution}</div>
               <div className="mt-0.5 text-sm font-semibold text-blue-600">{tr(about.education.degree)}</div>
               <div className="mt-0.5 text-xs text-slate-500">{tr(about.education.detail)}</div>
-
               <div className="my-6 border-t border-slate-200" />
-
-              <div className="mb-3 text-xs font-bold uppercase tracking-wider text-slate-500">
-                {t("about.area_label")}
-              </div>
+              <div className="mb-3 text-xs font-bold uppercase tracking-widest text-slate-500">{t("about.area_label")}</div>
               <div className="flex flex-wrap gap-2">
                 {about.focusAreas.map((tag) => (
-                  <span
-                    key={tag}
-                    className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-medium text-slate-600"
-                  >
-                    {tag}
-                  </span>
+                  <span key={tag} className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-medium text-slate-600">{tag}</span>
                 ))}
               </div>
-
               <div className="my-6 border-t border-slate-200" />
-
-              <div className="mb-3 text-xs font-bold uppercase tracking-wider text-slate-500">
-                {t("about.lang_label")}
-              </div>
+              <div className="mb-3 text-xs font-bold uppercase tracking-widest text-slate-500">{t("about.lang_label")}</div>
               <div className="flex flex-col gap-2">
                 {about.languages.map((l, i) => (
-                  <span key={i} className="rounded-lg bg-slate-50 px-3 py-2 text-xs font-medium text-slate-600">
-                    {l.flag} {tr(l.label)}
-                  </span>
+                  <span key={i} className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-xs font-semibold text-slate-700">{tr(l.label)}</span>
                 ))}
               </div>
             </div>

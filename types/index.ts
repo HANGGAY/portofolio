@@ -76,6 +76,8 @@ export interface TimelineEntry {
   type?: LocalizedText;
   date: string;
   description: LocalizedText;
+  responsibilities?: LocalizedText[];
+  achievements?: LocalizedText[];
   tags: string[];
   impact: LocalizedText;
   impactIcon: string;

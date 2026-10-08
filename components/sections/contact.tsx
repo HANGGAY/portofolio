@@ -6,7 +6,7 @@ import { profile } from "@/data/profile";
 import { useLanguage } from "@/components/providers/language-provider";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { Button } from "@/components/ui/button";
+import { GooeyButton } from "@/components/reactbits/GooeyButton";
 import { FadeIn } from "@/components/motion/fade-in";
 
 type Status = "idle" | "sending" | "success" | "error";
@@ -145,7 +145,7 @@ export function Contact() {
                 />
               </div>
 
-              <Button
+              <GooeyButton
                 type="submit"
                 variant="primary"
                 size="lg"
@@ -165,7 +165,7 @@ export function Contact() {
                     {t("contact.form.send")}
                   </>
                 )}
-              </Button>
+              </GooeyButton>
             </form>
           </FadeIn>
         </div>
