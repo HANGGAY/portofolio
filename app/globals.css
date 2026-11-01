@@ -43,3 +43,31 @@ body {
   background: #2563eb;
   color: #ffffff;
 }
+
+@keyframes liquid-chrome {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.liquid-chrome-bg {
+  background: linear-gradient(
+    115deg,
+    #ffffff 0%,
+    #e2e8f0 18%,
+    #cbd5e1 32%,
+    #f1f5f9 46%,
+    #94a3b8 60%,
+    #e2e8f0 74%,
+    #f8fafc 88%,
+    #ffffff 100%
+  );
+  background-size: 220% 220%;
+  animation: liquid-chrome 26s ease-in-out infinite;
+  filter: grayscale(1);
+}
+

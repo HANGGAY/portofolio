@@ -19,6 +19,26 @@ export const experience: TimelineEntry[] = [
         en: 'Resolved 214 hardware, software, OS, and network tickets across 6 sites (Karawang, Head Office, Sentul, Cikarang, Palmerah, Cimanggis) by building the MIT System — an in-house platform replacing spreadsheets/WhatsApp/email for ticketing, assets, service requests, and work orders (SPK).',
       },
       {
+        id: 'Menangani insiden jaringan dan internet melalui sistem tiket MIT (40 tiket internet di site Karawang saja).',
+        en: 'Handled network and internet incidents through the MIT ticketing system (40 internet tickets at the Karawang site alone).',
+      },
+      {
+        id: 'Merancang dan men-deploy sistem deteksi intrusi berbasis Suricata yang terintegrasi langsung dengan MIT System (ITSM), memantau 241 endpoint Windows di 4 site (PT Dinar Makmur Karawang, PT Dinar Makmur Cikarang, PT Sari Multi Utama Sentul, Head Office Central Park). Alert muncul di halaman MIT alert real-time, dan alert tingkat tinggi memicu notifikasi WhatsApp (WAHA).',
+        en: 'Designed and deployed a Suricata-based intrusion detection system integrated directly with the MIT System (ITSM), monitoring 241 Windows endpoints across 4 sites (PT Dinar Makmur Karawang, PT Dinar Makmur Cikarang, PT Sari Multi Utama Sentul, Head Office Central Park). Alerts appear in a real-time MIT alert page, and high-severity alerts trigger WhatsApp (WAHA) notifications.',
+      },
+      {
+        id: 'Membangun agent endpoint yang mengumpulkan IP, MAC, spesifikasi hardware, software terinstal, dan ringkasan koneksi dari setiap PC dan laptop, plus packet capture header-only dengan Windows pktmon, di-upload ke server IDS saat dipicu. Di-deploy via installer script dengan uninstall script untuk rollback.',
+        en: 'Built an endpoint agent that collects IP, MAC, hardware specs, installed software, and connection summaries from every PC and laptop, plus header-only packet capture with Windows pktmon, uploaded to the IDS server when triggered. Deployed via installer script with uninstall scripts for rollback.',
+      },
+      {
+        id: 'Mengotomasi penegakan kebijakan IT preventif: membandingkan software terinstal dengan blocklist/allowlist yang dikelola di MIT, dan memunculkan alert untuk software tidak resmi dan koneksi mencurigakan.',
+        en: 'Automated preventive IT policy enforcement: compared installed software against a blocklist/allowlist managed in MIT, and raised alerts for unauthorized software and suspicious connections.',
+      },
+      {
+        id: 'Setup server IDS Linux (Suricata dengan rule suricata-update, gateway HTTPS dengan validasi token, Nginx reverse proxy dengan TLS, sinkronisasi NTP, retensi & rotasi pcap, alarm disk) dan API ingest terotentikasi ke backend MIT yang mencegah batch duplikat.',
+        en: 'Set up the Linux IDS server (Suricata with suricata-update rules, HTTPS gateway with token validation, Nginx reverse proxy with TLS, NTP sync, pcap retention and rotation, disk alarms) and an authenticated ingest API to the MIT backend that prevents duplicate batches.',
+      },
+      {
         id: 'Menekan downtime layanan IT ~40% (Des 2025–Sep) dengan mendigitalisasi alur intake-to-resolution di seluruh site.',
         en: 'Cut IT service downtime ~40% (Dec 2025–Sep) by digitizing the ticket intake-to-resolution workflow across all 6 sites.',
       },
@@ -31,6 +51,18 @@ export const experience: TimelineEntry[] = [
         en: 'Achieved a 92% completion rate on service requests (47 of 51) across 6 sites — including 100% at Karawang-adjacent sites and Sentul — by giving each site manager real-time visibility into open vs. completed work.',
       },
       {
+        id: 'Menyelesaikan 550 masalah keamanan endpoint dan compliance di 243 perangkat (118 laptop, 125 PC) dengan memantau Wazuh Vulnerability Detection dan Threat Hunting, serta mengkoordinasikan update aplikasi, OS, dan sistem internal.',
+        en: 'Resolved 550 endpoint security and compliance issues across 243 devices (118 laptops, 125 PCs) by monitoring Wazuh Vulnerability Detection and Threat Hunting, and coordinating application, OS, and internal-system updates.',
+      },
+      {
+        id: 'Mendeteksi dan menghapus malware di 2 perangkat yang lolos scan Avast boot-time, dengan Wazuh Malware Detection untuk mengidentifikasi dan meremediasinya.',
+        en: 'Detected and removed malware on 2 devices that had bypassed Avast boot-time scans, by using Wazuh Malware Detection to identify and remediate them.',
+      },
+      {
+        id: 'Menjalankan preventive maintenance terjadwal di seluruh site operasional, mencakup kondisi hardware, legalitas lisensi software, status vulnerability, dan pengecekan malware, menggunakan Avast dan Wazuh agent.',
+        en: 'Ran scheduled preventive maintenance across operational sites, covering hardware condition, software license legality, vulnerability status, and malware checks, using Avast and the Wazuh agent.',
+      },
+      {
         id: 'Menstandarisasi setup network/OS/backup di seluruh site memakai template terdokumentasi Mikrotik, VLAN, dan OS-deployment, memangkas setup site/perangkat baru dari hitungan hari ke jam.',
         en: 'Standardized network/OS/backup setup across sites with documented Mikrotik, VLAN, and OS-deployment templates, cutting new-site/new-device setup from days to hours.',
       },
@@ -39,6 +71,22 @@ export const experience: TimelineEntry[] = [
       {
         id: 'Merancang dan membangun MIT System dari nol — mencakup IT Asset Management, Ticketing & Incident Management, Assessment, Service Request, Work Order (SPK), dan Software License Management — kini jadi single operational platform untuk 6 site.',
         en: 'Designed and built the MIT System from scratch — covering IT Asset Management, Ticketing & Incident Management, Assessments, Service Requests, Work Orders (SPK), and Software License Management — now the single operational platform used by all 6 sites.',
+      },
+      {
+        id: 'Implementasi sistem IDS Suricata terintegrasi dengan MIT System — memantau 241 endpoint Windows, real-time alerts di halaman MIT, dan WhatsApp notifications untuk alert high-severity.',
+        en: 'Implemented Suricata-based IDS integrated with MIT System — monitoring 241 Windows endpoints, real-time alerts on MIT alert page, and WhatsApp notifications for high-severity alerts.',
+      },
+      {
+        id: 'Implementasi Wazuh agent di 118 laptop dan 125 PC — memberi IT visibilitas terpusat atas vulnerability, threat, dan malware pada endpoint perusahaan.',
+        en: 'Implemented Wazuh agent across 118 laptops and 125 PCs — giving IT centralized visibility into vulnerabilities, threats, and malware on company endpoints.',
+      },
+      {
+        id: 'Mengurangi downtime layanan IT ~40% (Des 2025–Sep) lewat digitalisasi proses IT dan implementasi platform manajemen terpadu.',
+        en: 'Reduced IT service downtime by approximately 40% through the digitalization of IT service processes and implementation of an integrated IT management platform.',
+      },
+      {
+        id: 'Meningkatkan transparansi operasional, efisiensi layanan, dan tata kelola IT lewat MIT System dengan dokumentasi terpusat dan standar proses IT service.',
+        en: 'Improved operational transparency, service efficiency, and IT governance by implementing the MIT System with centralized documentation and standardized IT service workflows.',
       },
       {
         id: 'Menutup 92% IT assessment (49/53) dan 92% service request (47/51) di 6 site, dengan Karawang dan Sentul mencapai near-full completion, lewat pipeline Received → Completed yang menggantikan pengecekan status manual per site.',
@@ -52,10 +100,23 @@ export const experience: TimelineEntry[] = [
         id: 'Diakui sebagai sole technical owner untuk standardisasi IT lintas site; MIT System kini jadi acuan untuk IT governance, SLA tracking, dan kepatuhan aset.',
         en: 'Recognized as the sole technical owner for cross-site IT standardization, with the MIT System now the reference platform for IT governance, SLA tracking, and asset compliance.',
       },
+      {
+        id: 'Menyelesaikan 550 issue keamanan endpoint dan compliance di 243 perangkat (118 laptop, 125 PC) melalui Wazuh Vulnerability Detection dan Threat Hunting.',
+        en: 'Resolved 550 endpoint security and compliance issues across 243 devices (118 laptops, 125 PCs) by monitoring Wazuh Vulnerability Detection and Threat Hunting.',
+      },
+      {
+        id: 'Mendeteksi dan menghapus malware di 2 device yang lolos Avast boot-time scan menggunakan Wazuh Malware Detection.',
+        en: 'Detected and removed malware on 2 devices that bypassed Avast boot-time scans using Wazuh Malware Detection.',
+      },
+      {
+        id: 'MIT System: In-house platform for IT management (Ticketing, Assets, Service Requests, SPK, License Mgt).',
+        en: 'MIT System: In-house platform for IT management (Ticketing, Assets, Service Requests, SPK, License Mgt).',
+      },
     ],
-    tags: ['MIT System', 'ITSM', '6-Site Ops', 'Network Security', 'Mikrotik', 'VLAN', 'Linux Server', 'Windows Server', 'ITIL', 'Asset Management', 'SLA Tracking'],
-    impact: { id: '214 tiket · 92% assessment & request selesai · Downtime ↓~40% (Des 2025–Sep) · Platform tunggal 6 site', en: '214 tickets · 92% assessments & requests closed · Downtime ↓~40% (Dec 2025–Sep) · Single 6-site platform' },
+    tags: ['MIT System', 'ITSM', '6-Site Ops', 'Network Security', 'IDS', 'Suricata', 'Wazuh', 'Mikrotik', 'VLAN', 'Linux Server', 'Windows Server', 'ITIL', 'Asset Management', 'SLA Tracking', 'ISO 27001'],
+    impact: { id: '214 tiket · 550 security issues · 92% SLA · Downtime ↓~40% · IDS & Wazuh Integrated', en: '214 tickets · 550 security issues · 92% SLA · Downtime ↓~40% · IDS & Wazuh Integrated' },
     impactIcon: 'Trophy',
+    tags: ['MIT System', 'ITSM', '6-Site Ops', 'Network Security', 'IDS', 'Suricata', 'Wazuh', 'Mikrotik', 'VLAN', 'Linux Server', 'Windows Server', 'ITIL', 'Asset Management', 'SLA Tracking', 'ISO 27001'],
   },
   {
     role: { id: 'Guru Teknologi Informasi', en: 'Information Technology Teacher' },

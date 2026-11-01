@@ -7,8 +7,8 @@ export const about: AboutData = {
       en: "I am an IT Engineer with over 3 years of experience managing technology infrastructure in enterprise multi-site environments. My expertise spans IT operations, network security, system management, and digital solution development aligned with business objectives.",
     },
     {
-      id: "Di DINARSMU INDUSTRIES, saya menjadi titik sentral koordinasi IT lintas 6 site operasional — Karawang, Head Office Jakarta, Sentul, Cikarang, Palmerah & Cimanggis — memastikan kelangsungan bisnis dengan SLA terukur. Sejak Des 2025–Sep, downtime layanan turun ~40% lewat MIT System sebagai single operational platform untuk ticketing, aset, dan layanan IT.",
-      en: "At DINARSMU INDUSTRIES, I serve as the central IT coordination hub across 6 operational sites — Karawang, Head Office Jakarta, Sentul, Cikarang, Palmerah & Cimanggis — ensuring business continuity with measurable SLAs. From Dec 2025–Sep, service downtime fell ~40% via the MIT System as the single operational platform for ticketing, assets, and IT services.",
+      id: "Di DINARSMU INDUSTRIES, saya menjadi titik sentral koordinasi IT lintas 6 site operasional — Karawang, Head Office Jakarta, Sentul, Cikarang, Palmerah & Cimanggis. Selain menekan downtime ~40% (Des 2025–Sep) lewat MIT System, saya membangun infrastruktur keamanan proaktif menggunakan IDS Suricata dan Wazuh untuk memantau 241 endpoint secara real-time demi menjamin integritas data dan kelangsungan bisnis.",
+      en: "At DINARSMU INDUSTRIES, I serve as the central IT coordination hub across 6 operational sites — Karawang, Head Office Jakarta, Sentul, Cikarang, Palmerah & Cimanggis. Beyond cutting downtime ~40% (Dec 2025–Sep) via the MIT System, I built a proactive security infrastructure using Suricata IDS and Wazuh to monitor 241 endpoints in real-time, ensuring data integrity and business continuity.",
     },
     {
       id: "Filosofi saya sederhana: IT yang baik tidak terlihat, karena semuanya berjalan. Setiap keputusan teknis harus dapat dipertanggungjawabkan terhadap dampak bisnis — bukan sekadar keindahan arsitektur.",

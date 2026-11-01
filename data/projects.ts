@@ -13,10 +13,11 @@ export const projects: ProjectEntry[] = [
       en: "Built the MIT System from scratch — Asset Management, Ticketing & Incident, Assessments, Service Requests, Work Orders (SPK) & License Management — plus Mikrotik/VLAN/OS-deployment templates standardizing network/OS/backup setup.",
     },
     result: {
-      id: "214 tiket tertangani · 92% assessment (49/53) & service request (47/51) selesai · Downtime ↓~40% (Des 2025–Sep) · Single platform 6 site untuk governance & SLA",
-      en: "214 tickets handled · 92% assessments (49/53) & service requests (47/51) closed · Downtime ↓~40% (Dec 2025–Sep) · Single 6-site platform for governance & SLA",
+      id: "214 tiket · 550 security issues · 92% SLA · Downtime ↓~40% · IDS & Wazuh Integrated",
+      en: "214 tickets · 550 security issues · 92% SLA · Downtime ↓~40% · IDS & Wazuh Integrated",
     },
-    tech: ["Laravel", "PHP", "MySQL", "ITIL", "ISO 27001", "Mikrotik", "VLAN"],
+    tech: ["Laravel", "PHP", "MySQL", "ITIL", "ISO 27001", "Suricata IDS", "Wazuh", "Mikrotik", "VLAN"],
+    link: "/mit",
   },
   {
     badge: "Cloud Infrastructure",

@@ -2,6 +2,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
 import { navItems } from "@/data/nav";
 import { useLanguage } from "@/components/providers/language-provider";
 import { Container } from "@/components/ui/container";
@@ -11,10 +12,14 @@ import GooeyNav from "@/components/reactbits/GooeyNav";
 
 export function Navbar() {
   const { locale, setLocale, t, tr } = useLanguage();
+  const pathname = usePathname();
+  const router = useRouter();
+  const isHome = pathname === "/";
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [spyActive, setSpyActive] = useState<number>(-1);
-  const gooeyItems = useMemo(() => navItems.map((n) => ({ label: tr(n.label), href: n.href })), [tr, locale]);
+  const homeHref = (href: string) => (isHome ? href : `/${href}`);
+  const gooeyItems = useMemo(() => navItems.map((n) => ({ label: tr(n.label), href: homeHref(n.href) })), [tr, locale, isHome]);
   const manualRef = useRef<number | null>(null);
   const suppressRef = useRef(false);
 
@@ -82,6 +87,10 @@ export function Navbar() {
     setSpyActive(idx);
     const href = navItems[idx]?.href;
     if (href) {
+      if (!isHome) {
+        router.push(`/${href}`);
+        return;
+      }
       history.replaceState(null, "", href);
       document.querySelector(href)?.scrollIntoView({ behavior: "smooth", block: "start" });
     }
@@ -91,11 +100,20 @@ export function Navbar() {
     }, 950);
   };
 
+  const goContact = () => {
+    if (!isHome) {
+      router.push("/#contact");
+      return;
+    }
+    setSpyActive(navItems.length - 1);
+    document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
   return (
     <header className={cn("sticky top-0 z-50 w-full border-b transition-all duration-300", scrolled ? "border-slate-200 bg-white/90 backdrop-blur-xl shadow-sm" : "border-transparent bg-white/70 backdrop-blur-md")}>
       <Container>
         <div className="flex h-[64px] items-center justify-between gap-4">
-          <a href="#hero" onClick={() => setSpyActive(-1)} className="shrink-0 whitespace-nowrap text-[1.05rem] font-extrabold tracking-tight text-slate-900">
+          <a href={isHome ? "#hero" : "/"} onClick={() => setSpyActive(-1)} className="shrink-0 whitespace-nowrap text-[1.05rem] font-extrabold tracking-tight text-slate-900">
             Hanggay<span className="text-blue-600">.</span>
           </a>
 
@@ -112,7 +130,7 @@ export function Navbar() {
                 EN
               </button>
             </div>
-            <GooeyButton variant="primary" size="sm" onClick={() => { setSpyActive(navItems.length - 1); document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth", block: "start" }); }}>
+            <GooeyButton variant="primary" size="sm" onClick={goContact}>
               {t("nav.contact_cta")}
             </GooeyButton>
           </div>
@@ -130,10 +148,10 @@ export function Navbar() {
               {navItems.map((item, idx) => (
                 <a
                   key={item.href}
-                  href={item.href}
+                  href={homeHref(item.href)}
                   onClick={() => {
                     setOpen(false);
-                    handleNavSelect(idx);
+                    if (isHome) handleNavSelect(idx);
                   }}
                   className={cn("rounded-xl px-3 py-2.5 text-sm font-medium transition-colors", spyActive === idx ? "bg-slate-900 text-white" : "text-slate-700 hover:bg-slate-100")}
                 >
@@ -148,7 +166,7 @@ export function Navbar() {
                   English
                 </button>
               </div>
-              <GooeyButton variant="primary" size="md" className="mt-2 w-full" onClick={() => { setOpen(false); setSpyActive(navItems.length - 1); document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth", block: "start" }); }}>
+              <GooeyButton variant="primary" size="md" className="mt-2 w-full" onClick={() => { setOpen(false); goContact(); }}>
                 {t("nav.contact_cta")}
               </GooeyButton>
             </Container>

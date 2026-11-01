@@ -90,6 +90,7 @@ export interface ProjectEntry {
   solution: LocalizedText;
   result: LocalizedText;
   tech: string[];
+  link?: string;
 }
 
 export interface ImpactStat {
@@ -98,6 +99,45 @@ export interface ImpactStat {
   suffix: string;
   label: LocalizedText;
   description: LocalizedText;
+}
+
+export interface ProjectDetail {
+  id: string;
+  title: LocalizedText;
+  subtitle: LocalizedText;
+  overview: LocalizedText;
+  modules: {
+    name: LocalizedText;
+    description: LocalizedText;
+    icon: string;
+    metrics: LocalizedText;
+  }[];
+  integration: {
+    title: LocalizedText;
+    items: {
+      name: string;
+      description: LocalizedText;
+    }[];
+  };
+  impact: {
+    title: LocalizedText;
+    metrics: {
+      label: LocalizedText;
+      value: string;
+      detail: LocalizedText;
+    }[];
+  };
+  stack: {
+    title: LocalizedText;
+    technologies: {
+      category: string;
+      items: string[];
+    }[];
+  };
+  screenshots: {
+    mit: { path: string; label: LocalizedText }[];
+    esign: { path: string; label: LocalizedText }[];
+  };
 }
 
 export type SkillCategory =

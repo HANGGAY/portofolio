@@ -20,8 +20,8 @@ export function Projects() {
       <Container className="relative">
         <SectionHeading eyebrow={t("proj.label")} title={t("proj.title")} subtitle={t("proj.sub")} />
         <div className="grid gap-6 lg:grid-cols-2 xl:grid-cols-3">
-          {projects.map((p, i) => (
-            <FadeIn key={i} delay={(i % 3) * 0.07}>
+          {projects.map((p, i) => {
+            const ProjectContent = (
               <div className="group flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-slate-900/10 hover:shadow-xl">
                 <span className="mb-4 inline-flex w-fit rounded-full bg-slate-900 px-3 py-1 text-[0.68rem] font-bold uppercase tracking-wide text-white">{p.badge}</span>
                 <h3 className="text-[1.02rem] font-bold tracking-tight text-slate-900">{tr(p.title)}</h3>
@@ -45,8 +45,20 @@ export function Projects() {
                   <span>{tr(p.result)}</span>
                 </div>
               </div>
-            </FadeIn>
-          ))}
+            );
+
+            return (
+              <FadeIn key={i} delay={(i % 3) * 0.07}>
+                {p.link ? (
+                  <a href={p.link} className="block h-full">
+                    {ProjectContent}
+                  </a>
+                ) : (
+                  ProjectContent
+                )}
+              </FadeIn>
+            );
+          })}
         </div>
       </Container>
     </section>
