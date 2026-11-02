@@ -181,6 +181,9 @@ export default function Ferrofluid({
       };
       callIfFn(programRef.current, "remove"); callIfFn(geometryRef.current, "remove");
       callIfFn(meshRef.current, "remove"); callIfFn(rendererRef.current, "destroy");
+      try {
+        (gl.getExtension("WEBGL_lose_context") as { loseContext: () => void } | null)?.loseContext();
+      } catch {}
       programRef.current = null; geometryRef.current = null; meshRef.current = null; rendererRef.current = null;
     };
   }, [dpr, paused, colors, speed, scale, turbulence, fluidity, rimWidth, sharpness, shimmer, glow, flowDirection, opacity, mouseInteraction, mouseStrength, mouseRadius, mouseDampening]);

@@ -1,5 +1,7 @@
 "use client";
 import dynamic from "next/dynamic";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 import { getIcon } from "@/lib/icons";
 import { experience } from "@/data/experience";
 import { useLanguage } from "@/components/providers/language-provider";
@@ -74,6 +76,20 @@ export function Experience() {
                         <ImpactIcon className="h-4 w-4 shrink-0 mt-0.5" />
                         <span>{tr(item.impact)}</span>
                       </div>
+                      {item.link ? (
+                        <Link
+                          href={item.link.href}
+                          className="group mt-3 flex items-center justify-between gap-4 rounded-xl border border-slate-200 bg-slate-900 px-4 py-3.5 text-white transition-colors hover:bg-slate-800"
+                        >
+                          <div className="min-w-0">
+                            <div className="text-sm font-bold">{tr(item.link.label)}</div>
+                            <div className="mt-0.5 text-xs leading-relaxed text-slate-300">{tr(item.link.description)}</div>
+                          </div>
+                          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/10 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
+                            <ArrowUpRight className="h-4 w-4" />
+                          </span>
+                        </Link>
+                      ) : null}
                     </div>
                   </div>
                 </FadeIn>

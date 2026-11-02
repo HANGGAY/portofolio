@@ -116,7 +116,14 @@ export const experience: TimelineEntry[] = [
     tags: ['MIT System', 'ITSM', '6-Site Ops', 'Network Security', 'IDS', 'Suricata', 'Wazuh', 'Mikrotik', 'VLAN', 'Linux Server', 'Windows Server', 'ITIL', 'Asset Management', 'SLA Tracking', 'ISO 27001'],
     impact: { id: '214 tiket · 550 security issues · 92% SLA · Downtime ↓~40% · IDS & Wazuh Integrated', en: '214 tickets · 550 security issues · 92% SLA · Downtime ↓~40% · IDS & Wazuh Integrated' },
     impactIcon: 'Trophy',
-    tags: ['MIT System', 'ITSM', '6-Site Ops', 'Network Security', 'IDS', 'Suricata', 'Wazuh', 'Mikrotik', 'VLAN', 'Linux Server', 'Windows Server', 'ITIL', 'Asset Management', 'SLA Tracking', 'ISO 27001'],
+    link: {
+      href: '/mit',
+      label: { id: 'Lihat MIT System', en: 'Explore the MIT System' },
+      description: {
+        id: 'Studi kasus lengkap: modul ITSM, alur approval, integrasi Suricata & Wazuh, dan galeri antarmuka.',
+        en: 'Full case study: ITSM modules, approval flow, Suricata & Wazuh integration, and interface gallery.',
+      },
+    },
   },
   {
     role: { id: 'Guru Teknologi Informasi', en: 'Information Technology Teacher' },

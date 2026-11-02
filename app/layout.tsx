@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/components/providers/language-provider";
+import { ConsoleFilter } from "@/components/providers/console-filter";
 import { profile } from "@/data/profile";
 
 const inter = Inter({
@@ -95,6 +96,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="min-h-full flex flex-col bg-white text-slate-900">
+        <ConsoleFilter />
         <LanguageProvider>{children}</LanguageProvider>
       </body>
     </html>

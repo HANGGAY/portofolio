@@ -81,6 +81,11 @@ export interface TimelineEntry {
   tags: string[];
   impact: LocalizedText;
   impactIcon: string;
+  link?: {
+    href: string;
+    label: LocalizedText;
+    description: LocalizedText;
+  };
 }
 
 export interface ProjectEntry {

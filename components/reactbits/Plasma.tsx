@@ -274,6 +274,17 @@ export default function Plasma({
       try {
         containerEl.removeChild(canvas);
       } catch {}
+      const callIfFn = (obj: unknown, key: string) => {
+        const fn = (obj as Record<string, unknown> | null)?.[key];
+        if (typeof fn === "function") (fn as () => void).call(obj);
+      };
+      callIfFn(mesh, "remove");
+      callIfFn(program, "remove");
+      callIfFn(geometry, "remove");
+      callIfFn(renderer, "destroy");
+      try {
+        (gl.getExtension("WEBGL_lose_context") as { loseContext: () => void } | null)?.loseContext();
+      } catch {}
     };
   }, [color, speed, direction, scale, opacity, mouseInteractive, renderScale, maxDpr, targetFps, iterations, lightMode]);
 

@@ -31,6 +31,21 @@ export function Hero() {
   const { t, tr } = useLanguage();
   const role = tr(profile.role);
   const typed = useTypingEffect(role);
+  const [lanyardReady, setLanyardReady] = useState(false);
+
+  useEffect(() => {
+    const idleWindow = window as Window & {
+      requestIdleCallback?: (callback: () => void, options?: { timeout: number }) => number;
+      cancelIdleCallback?: (handle: number) => void;
+    };
+    if (idleWindow.requestIdleCallback) {
+      const handle = idleWindow.requestIdleCallback(() => setLanyardReady(true), { timeout: 900 });
+      return () => idleWindow.cancelIdleCallback?.(handle);
+    }
+    const handle = window.setTimeout(() => setLanyardReady(true), 250);
+    return () => window.clearTimeout(handle);
+  }, []);
+
   return (
     <section id="hero" className="relative overflow-hidden bg-white pt-10 pb-16 sm:pt-14 sm:pb-24">
       <div className="pointer-events-none absolute inset-0">
@@ -112,14 +127,18 @@ export function Hero() {
         <motion.div initial={{ opacity: 0, scale: 0.94, y: 18 }} animate={{ opacity: 1, scale: 1, y: 0 }} transition={{ duration: 0.75, delay: 0.18, ease: [0.22, 1, 0.36, 1] }} className="order-1 lg:order-2 relative mx-auto w-full max-w-[460px] lg:mx-0 lg:max-w-none">
           <div className="pointer-events-none absolute -inset-8 -z-10 rounded-[2.5rem] bg-gradient-to-br from-blue-600/20 via-cyan-400/10 to-transparent blur-2xl" />
           <div className="relative">
-            <Lanyard
-              position={[0, 0, 20]}
-              gravity={[0, -40, 0]}
-              frontImage="/images/hanggaylanyard.jpeg"
-              backImage="/images/hanggaylanyard.jpeg"
-              imageFit="cover"
-              lanyardWidth={1}
-            />
+            {lanyardReady ? (
+              <Lanyard
+                position={[0, 0, 20]}
+                gravity={[0, -40, 0]}
+                frontImage="/images/hanggaylanyard.jpeg"
+                backImage="/images/hanggaylanyard.jpeg"
+                imageFit="cover"
+                lanyardWidth={1}
+              />
+            ) : (
+              <div className="h-[420px] w-full animate-pulse rounded-3xl bg-slate-100 lg:h-[520px]" />
+            )}
             <div className="pointer-events-none absolute bottom-2 left-1/2 -translate-x-1/2 rounded-full bg-slate-900/80 px-3 py-1 text-[10px] font-semibold tracking-wide text-white/90 backdrop-blur">DRAG · TARIK KARTU</div>
           </div>
         </motion.div>
