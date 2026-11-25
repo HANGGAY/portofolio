@@ -4,16 +4,16 @@ export const profile: ProfileData = {
   name: 'Hanggay Prayoga',
   initials: 'HP',
   role: {
-    id: 'IT Helpdesk, Support And Network Officer',
-    en: 'IT Helpdesk, Support And Network Officer',
+    id: 'Cybersecurity (Blue Team / SOC) | Wazuh · Suricata · Burp Suite · OWASP ZAP | ITSM Developer',
+    en: 'Cybersecurity (Blue Team / SOC) | Wazuh · Suricata · Burp Suite · OWASP ZAP | ITSM Developer',
   },
   badge: {
-    id: 'Terbuka untuk Peluang Enterprise',
-    en: 'Open to Enterprise Opportunities',
+    id: 'Terbuka untuk kerja onsite',
+    en: 'Open to onsite work',
   },
   description: {
-    id: 'Membangun fondasi teknologi yang andal untuk organisasi skala menengah dan besar — dari infrastruktur multi-site, keamanan jaringan, hingga transformasi digital dan otomasi berbasis AI yang menghasilkan dampak bisnis nyata.',
-    en: 'Building reliable technology foundations for mid-to-large organizations — from multi-site infrastructure and network security to AI-driven digital transformation that delivers measurable business impact.',
+    id: 'Cybersecurity Engineer yang beralih dari operasi IT ke Blue Team / SOC / Security Engineering di grup manufaktur dan kantor 6 site (Karawang, Head Office Jakarta, Sentul, Cikarang, Palmerah, Cimanggis). Mengimplementasikan Wazuh di 243 endpoint (118 laptop, 125 PC) dengan 550 temuan kerentanan terselesaikan dan 2 infeksi malware dihapus, serta membangun IDS berbasis Suricata yang memantau 4 site dan terintegrasi dengan MIT System — platform ITSM full-stack yang saya kembangkan dan jalankan di 6 site. Berpengalaman dengan Burp Suite dan OWASP ZAP untuk assessment aplikasi web, serta memahami OWASP Top 10 dan MITRE ATT&CK. Saat ini merancang layer SOAR berbasis AI untuk menyaring alert false positive.',
+    en: 'Cybersecurity-focused IT engineer moving from IT operations into Blue Team / SOC / Security Engineering across a 6-site manufacturing and office group (Karawang, Head Office Jakarta, Sentul, Cikarang, Palmerah, Cimanggis). Implemented Wazuh on 243 endpoints (118 laptops, 125 PCs) with 550 vulnerability findings resolved and 2 malware infections removed, and built a Suricata-based IDS monitoring 4 sites, integrated with the MIT System — an in-house full-stack ITSM platform I developed and run across all 6 sites. Hands-on with Burp Suite and OWASP ZAP for web application assessment, with working knowledge of OWASP Top 10 and MITRE ATT&CK. Currently designing an AI-assisted SOAR layer to cut false-positive alerts.',
   },
   location: 'Karawang, Jawa Barat, Indonesia',
   email: 'hanggay578@gmail.com',
@@ -31,24 +31,24 @@ export const profile: ProfileData = {
     en: 'Active & Open to Opportunities',
   },
   cardTitle: {
-    id: 'IT Engineer · Karawang, Indonesia',
-    en: 'IT Engineer · Karawang, Indonesia',
+    id: 'Cybersecurity Engineer · Karawang, Indonesia',
+    en: 'Cybersecurity Engineer · Karawang, Indonesia',
   },
   metrics: [
     {
-      value: 3,
-      suffix: '+',
-      label: { id: 'Tahun Pengalaman', en: 'Years Experience' },
-    },
-    {
-      value: 6,
+      value: 243,
       suffix: '',
-      label: { id: 'Site Enterprise', en: 'Enterprise Sites' },
+      label: { id: 'Endpoint Wazuh', en: 'Wazuh Endpoints' },
     },
     {
-      value: 40,
-      suffix: '%',
-      label: { id: 'Penurunan Downtime IT', en: 'IT Downtime Reduced' },
+      value: 550,
+      suffix: '',
+      label: { id: 'Kerentanan Terselesaikan', en: 'Vulnerabilities Resolved' },
+    },
+    {
+      value: 241,
+      suffix: '',
+      label: { id: 'Endpoint Suricata IDS', en: 'Suricata IDS Endpoints' },
     },
     {
       value: 214,
@@ -58,24 +58,21 @@ export const profile: ProfileData = {
   ],
   cardStats: [
     {
-      label: {
-        id: 'Ketersediaan Infrastruktur',
-        en: 'Infrastructure Availability',
-      },
-      display: '99.5%',
-      percent: 99.5,
+      label: { id: 'Endpoint Wazuh', en: 'Wazuh Endpoints' },
+      display: '243 endpoints',
+      percent: 100,
       gradient: 'from-blue-600 to-blue-700',
     },
     {
-      label: { id: 'Penurunan Downtime', en: 'Downtime Reduction' },
-      display: '↓40%',
-      percent: 40,
+      label: { id: 'Cakupan Suricata IDS', en: 'Suricata IDS Coverage' },
+      display: '241 endpoints · 4 site',
+      percent: 100,
       gradient: 'from-emerald-500 to-emerald-600',
     },
     {
-      label: { id: 'Site Dikelola', en: 'Sites Managed' },
-      display: '6 Sites',
-      percent: 90,
+      label: { id: 'Site Operasional', en: 'Operational Sites' },
+      display: '6 sites',
+      percent: 100,
       gradient: 'from-cyan-500 to-blue-600',
     },
   ],

@@ -2,67 +2,93 @@ import type { ExpertiseItem } from "@/types";
 
 export const expertise: ExpertiseItem[] = [
   {
-    icon: "Building2",
-    title: { id: "Enterprise Infrastructure", en: "Enterprise Infrastructure" },
-    description: {
-      id: "Desain, implementasi, dan pengelolaan infrastruktur IT lintas multi-site dengan standar enterprise.",
-      en: "Design, implementation, and management of multi-site IT infrastructure to enterprise standards.",
-    },
-  },
-  {
-    icon: "Settings2",
-    title: { id: "IT Operations & ITSM", en: "IT Operations & ITSM" },
-    description: {
-      id: "Manajemen operasi IT harian, incident management, SLA tracking, dan service desk berbasis ITIL.",
-      en: "Daily IT operations management, incident management, SLA tracking, and ITIL-based service desk.",
-    },
-  },
-  {
-    icon: "Cloud",
-    title: { id: "Cloud Solutions", en: "Cloud Solutions" },
-    description: {
-      id: "Implementasi private cloud (Nextcloud), cloud migration strategy, dan hybrid cloud architecture.",
-      en: "Private cloud implementation (Nextcloud), cloud migration strategy, and hybrid cloud architecture.",
-    },
-  },
-  {
     icon: "ShieldCheck",
-    title: { id: "Network Security", en: "Network Security" },
+    title: {
+      id: "Security Monitoring & Detection (SIEM/IDS)",
+      en: "Security Monitoring & Detection (SIEM/IDS)",
+    },
     description: {
-      id: "Konfigurasi firewall, VPN, network segmentation, dan penerapan konsep ISO 27001.",
-      en: "Firewall configuration, VPN, network segmentation, and ISO 27001 concept implementation.",
+      id: "Wazuh dan Suricata IDS untuk monitoring endpoint, deteksi ancaman, dan triage alert lintas site.",
+      en: "Wazuh and Suricata IDS for endpoint monitoring, threat detection, and cross-site alert triage.",
     },
   },
   {
-    icon: "Rocket",
-    title: { id: "Digital Transformation", en: "Digital Transformation" },
+    icon: "Target",
+    title: {
+      id: "Vulnerability Management & Assessment",
+      en: "Vulnerability Management & Assessment",
+    },
     description: {
-      id: "Memimpin inisiatif transformasi IT — dari OS migration massal hingga implementasi sistem manajemen terpadu.",
-      en: "Leading IT transformation initiatives — from mass OS migration to integrated management system implementation.",
+      id: "Prioritas temuan berdasarkan severity, koordinasi patching, dan assessment aplikasi web dengan Burp Suite serta OWASP ZAP.",
+      en: "Severity-based finding prioritization, patch coordination, and web application assessment with Burp Suite and OWASP ZAP.",
+    },
+  },
+  {
+    icon: "BarChart3",
+    title: { id: "Incident Triage & Response", en: "Incident Triage & Response" },
+    description: {
+      id: "Penanganan alert high-severity, malware, dan insiden jaringan melalui alur tiket MIT System.",
+      en: "Handling high-severity alerts, malware, and network incidents through the MIT System ticketing workflow.",
+    },
+  },
+  {
+    icon: "Globe2",
+    title: {
+      id: "Web Application Security (OWASP)",
+      en: "Web Application Security (OWASP)",
+    },
+    description: {
+      id: "Mapping temuan ke OWASP Top 10 dan perbaikan pada aplikasi internal.",
+      en: "Mapping findings to OWASP Top 10 and remediating issues in internal applications.",
+    },
+  },
+  {
+    icon: "Workflow",
+    title: { id: "Security Automation (SOAR)", en: "Security Automation (SOAR)" },
+    description: {
+      id: "Desain layer SOAR berbasis Shuffle untuk enrichment alert, verdict LLM, dan routing aksi dengan guardrail.",
+      en: "Designing a Shuffle-based SOAR layer for alert enrichment, LLM verdicts, and guarded action routing.",
     },
   },
   {
     icon: "Bot",
-    title: { id: "AI & Automation", en: "AI & Automation" },
+    title: {
+      id: "Threat Detection Research (AI/ML)",
+      en: "Threat Detection Research (AI/ML)",
+    },
     description: {
-      id: "Pengembangan AI chatbot, workflow automation dengan n8n & Flowise, dan analisis data operasional.",
-      en: "AI chatbot development, workflow automation with n8n & Flowise, and operational data analysis.",
+      id: "Co-author risiko adversarial pada detector intrusi berbasis explanation.",
+      en: "Co-author research on adversarial robustness of explanation-based intrusion detectors.",
     },
   },
   {
-    icon: "Code2",
-    title: { id: "Full Stack Development", en: "Full Stack Development" },
+    icon: "Building2",
+    title: {
+      id: "IT Infrastructure & Operations",
+      en: "IT Infrastructure & Operations",
+    },
     description: {
-      id: "Pengembangan sistem internal enterprise — ITSM platform, ticketing system, dan portal akademik.",
-      en: "Enterprise internal system development — ITSM platform, ticketing system, and academic portals.",
+      id: "Operasi IT multi-site, preventive maintenance, dan pengelolaan aset serta lisensi software.",
+      en: "Multi-site IT operations, preventive maintenance, and asset and software license management.",
     },
   },
   {
-    icon: "TrendingUp",
-    title: { id: "Process Optimization", en: "Process Optimization" },
+    icon: "Network",
+    title: { id: "Network Security", en: "Network Security" },
     description: {
-      id: "Optimasi proses bisnis berbasis data — cost reduction, SOP standardization, dan efisiensi operasional.",
-      en: "Data-driven business process optimization — cost reduction, SOP standardization, and operational efficiency.",
+      id: "TCP/IP, VLAN, routing & NAT, L2TP VPN, firewall, dan Mikrotik untuk lingkungan multi-site.",
+      en: "TCP/IP, VLAN, routing & NAT, L2TP VPN, firewall, and Mikrotik for multi-site environments.",
+    },
+  },
+  {
+    icon: "ClipboardCheck",
+    title: {
+      id: "Risk & Compliance (ISO 27001)",
+      en: "Risk & Compliance (ISO 27001)",
+    },
+    description: {
+      id: "Dasar ISO 27001, GRC, quantitative risk analysis, dan kepatuhan lisensi software.",
+      en: "ISO 27001 fundamentals, GRC, quantitative risk analysis, and software license compliance.",
     },
   },
 ];

@@ -1,23 +1,12 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import { useLanguage } from "@/components/providers/language-provider";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { FadeIn } from "@/components/motion/fade-in";
-
-const NetworkTopology = dynamic(
-  () => import("@/components/visuals/network-topology").then((m) => m.NetworkTopology),
-  { ssr: false }
-);
-const CloudInfrastructure = dynamic(
-  () => import("@/components/visuals/cloud-infrastructure").then((m) => m.CloudInfrastructure),
-  { ssr: false }
-);
-const AIWorkflow = dynamic(
-  () => import("@/components/visuals/ai-workflow").then((m) => m.AIWorkflow),
-  { ssr: false }
-);
+import { NetworkTopology } from "@/components/visuals/network-topology";
+import { CloudInfrastructure } from "@/components/visuals/cloud-infrastructure";
+import { AIWorkflow } from "@/components/visuals/ai-workflow";
 
 export function Architecture() {
   const { t } = useLanguage();

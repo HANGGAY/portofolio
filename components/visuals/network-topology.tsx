@@ -1,14 +1,13 @@
-"use client";
-
-import { motion } from "framer-motion";
+import type { CSSProperties } from "react";
 
 export function NetworkTopology() {
   const nodes = [
-    { x: 260, y: 40, label: "HQ Jakarta" },
-    { x: 90, y: 150, label: "Karawang" },
-    { x: 430, y: 150, label: "Cikarang" },
-    { x: 150, y: 270, label: "Sentul" },
-    { x: 370, y: 270, label: "Cimanggis" },
+    { x: 260, y: 40, label: "Head Office" },
+    { x: 70, y: 150, label: "Karawang" },
+    { x: 450, y: 150, label: "Cikarang" },
+    { x: 110, y: 275, label: "Sentul" },
+    { x: 260, y: 275, label: "Cimanggis" },
+    { x: 410, y: 275, label: "Palmerah" },
   ];
 
   return (
@@ -26,7 +25,6 @@ export function NetworkTopology() {
 
       <circle cx="260" cy="150" r="150" fill="url(#net-glow)" />
 
-      {/* grid backdrop */}
       {Array.from({ length: 6 }).map((_, i) => (
         <line key={`h-${i}`} x1="0" y1={i * 64} x2="520" y2={i * 64} stroke="#E2E8F0" strokeWidth="1" />
       ))}
@@ -34,10 +32,10 @@ export function NetworkTopology() {
         <line key={`v-${i}`} x1={i * 65} y1="0" x2={i * 65} y2="320" stroke="#E2E8F0" strokeWidth="1" />
       ))}
 
-      {/* connections from HQ to each site */}
       {nodes.slice(1).map((n, i) => (
-        <motion.line
-          key={i}
+        <line
+          key={`line-${i}`}
+          className="svg-flow-line"
           x1={nodes[0].x}
           y1={nodes[0].y}
           x2={n.x}
@@ -45,38 +43,29 @@ export function NetworkTopology() {
           stroke="url(#net-line)"
           strokeWidth="2"
           strokeDasharray="6 5"
-          initial={{ pathLength: 0, opacity: 0 }}
-          whileInView={{ pathLength: 1, opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.1, delay: 0.2 + i * 0.15, ease: "easeInOut" }}
+          style={{ animationDelay: `${i * 0.15}s` }}
         />
       ))}
 
-      {/* animated data pulses */}
       {nodes.slice(1).map((n, i) => (
-        <motion.circle
-          key={`pulse-${i}`}
-          r="3.5"
-          fill="#06B6D4"
-          initial={{ cx: nodes[0].x, cy: nodes[0].y, opacity: 0 }}
-          animate={{ cx: [nodes[0].x, n.x], cy: [nodes[0].y, n.y], opacity: [0, 1, 0] }}
-          transition={{ duration: 2.4, repeat: Infinity, delay: i * 0.5, ease: "easeInOut" }}
-        />
+        <circle key={`pulse-${i}`} r="3.5" fill="#06B6D4">
+          <animate attributeName="cx" values={`${nodes[0].x};${n.x}`} dur="2.4s" begin={`${i * 0.5}s`} repeatCount="indefinite" />
+          <animate attributeName="cy" values={`${nodes[0].y};${n.y}`} dur="2.4s" begin={`${i * 0.5}s`} repeatCount="indefinite" />
+          <animate attributeName="opacity" values="0;1;0" dur="2.4s" begin={`${i * 0.5}s`} repeatCount="indefinite" />
+        </circle>
       ))}
 
       {nodes.map((n, i) => (
-        <g key={i}>
-          <motion.circle
+        <g key={`node-${i}`}>
+          <circle
+            className="svg-node"
+            style={{ "--delay": `${0.1 + i * 0.1}s` } as CSSProperties}
             cx={n.x}
             cy={n.y}
             r={i === 0 ? 22 : 15}
             fill={i === 0 ? "#0F172A" : "#FFFFFF"}
-            stroke={i === 0 ? "#2563EB" : "#2563EB"}
+            stroke="#2563EB"
             strokeWidth="2"
-            initial={{ scale: 0 }}
-            whileInView={{ scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 + i * 0.1, type: "spring" }}
           />
           <text
             x={n.x}

@@ -7,15 +7,15 @@ declare module "*.png";
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      meshLineGeometry: any;
-      meshLineMaterial: any;
+      meshLineGeometry: Record<string, unknown>;
+      meshLineMaterial: Record<string, unknown>;
     }
   }
   namespace React {
     namespace JSX {
       interface IntrinsicElements {
-        meshLineGeometry: any;
-        meshLineMaterial: any;
+        meshLineGeometry: Record<string, unknown>;
+        meshLineMaterial: Record<string, unknown>;
       }
     }
   }

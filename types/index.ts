@@ -59,8 +59,9 @@ export interface AboutData {
     institution: string;
     degree: LocalizedText;
     detail: LocalizedText;
-  };
-  focusAreas: string[];
+    expectedYear?: LocalizedText;
+  }[];
+  focusAreas: LocalizedText[];
   languages: { flag: string; label: LocalizedText }[];
 }
 
@@ -76,6 +77,7 @@ export interface TimelineEntry {
   type?: LocalizedText;
   date: string;
   description: LocalizedText;
+  bullets?: { heading: LocalizedText; items: LocalizedText[] }[];
   responsibilities?: LocalizedText[];
   achievements?: LocalizedText[];
   tags: string[];
@@ -90,12 +92,21 @@ export interface TimelineEntry {
 
 export interface ProjectEntry {
   badge: string;
+  status?: LocalizedText;
   title: LocalizedText;
   challenge: LocalizedText;
   solution: LocalizedText;
   result: LocalizedText;
   tech: string[];
   link?: string;
+}
+
+export interface ResearchEntry {
+  title: LocalizedText;
+  role: LocalizedText;
+  status?: LocalizedText;
+  bullets: LocalizedText[];
+  tags: string[];
 }
 
 export interface ImpactStat {
@@ -145,19 +156,46 @@ export interface ProjectDetail {
   };
 }
 
-export type SkillCategory =
-  | "infra"
-  | "backend"
-  | "frontend"
-  | "cloud"
-  | "automation"
-  | "database"
-  | "os";
+export interface SecurityFlowNode {
+  key: string;
+  title: LocalizedText;
+  detail?: LocalizedText;
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+  tone: "source" | "server" | "soar" | "branch" | "decision" | "action" | "note";
+}
 
-export interface SkillItem {
-  cat: SkillCategory;
+export interface SecurityFlowDiagram {
+  width: number;
+  height: number;
+  edges: string[];
+  nodes: SecurityFlowNode[];
+}
+
+export interface SecurityPageData {
+  badge: LocalizedText;
+  title: LocalizedText;
+  subtitle: LocalizedText;
+  overview: LocalizedText;
+  metrics: {
+    label: LocalizedText;
+    value: string;
+    detail: LocalizedText;
+  }[];
+  diagram: SecurityFlowDiagram;
+  screenshots: {
+    path: string;
+    label: LocalizedText;
+  }[];
+}
+
+export interface SkillGroup {
+  key: string;
   icon: string;
-  name: string;
+  label: LocalizedText;
+  items: string[];
 }
 
 export interface CertificationEntry {
@@ -165,7 +203,7 @@ export interface CertificationEntry {
   title: LocalizedText;
   organization: string;
   date: LocalizedText;
-  description: LocalizedText;
+  description?: LocalizedText;
 }
 
 export interface ContactLink {

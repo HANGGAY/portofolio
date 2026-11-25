@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
@@ -18,8 +18,11 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [spyActive, setSpyActive] = useState<number>(-1);
-  const homeHref = (href: string) => (isHome ? href : `/${href}`);
-  const gooeyItems = useMemo(() => navItems.map((n) => ({ label: tr(n.label), href: homeHref(n.href) })), [tr, locale, isHome]);
+  const homeHref = useCallback(
+    (href: string) => (href.startsWith("/") ? href : isHome ? href : `/${href}`),
+    [isHome]
+  );
+  const gooeyItems = useMemo(() => navItems.map((n) => ({ label: tr(n.label), href: homeHref(n.href) })), [tr, homeHref]);
   const manualRef = useRef<number | null>(null);
   const suppressRef = useRef(false);
 
@@ -87,6 +90,10 @@ export function Navbar() {
     setSpyActive(idx);
     const href = navItems[idx]?.href;
     if (href) {
+      if (href.startsWith("/")) {
+        router.push(href);
+        return;
+      }
       if (!isHome) {
         router.push(`/${href}`);
         return;

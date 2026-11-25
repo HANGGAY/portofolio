@@ -1,17 +1,15 @@
-"use client";
-
-import { motion } from "framer-motion";
+import type { CSSProperties } from "react";
 
 export function AIWorkflow() {
   const steps = [
-    { x: 60, label: "Data In" },
-    { x: 195, label: "AI Engine" },
-    { x: 330, label: "Automation" },
-    { x: 460, label: "Insight" },
+    { x: 60, label: "Alert" },
+    { x: 195, label: "Enrich" },
+    { x: 330, label: "LLM Verdict" },
+    { x: 460, label: "Route / Approve" },
   ];
 
   return (
-    <svg viewBox="0 0 520 320" className="h-full w-full" fill="none" role="img" aria-label="AI-driven IT operations workflow diagram">
+    <svg viewBox="0 0 520 320" className="h-full w-full" fill="none" role="img" aria-label="AI-assisted SOAR alert triage design diagram">
       <defs>
         <linearGradient id="ai-line" x1="0" y1="0" x2="1" y2="0">
           <stop offset="0%" stopColor="#2563EB" />
@@ -20,26 +18,22 @@ export function AIWorkflow() {
       </defs>
 
       <line x1="60" y1="150" x2="460" y2="150" stroke="#E2E8F0" strokeWidth="2" />
-      <motion.line
+      <line
+        className="svg-flow-line"
         x1="60"
         y1="150"
         x2="460"
         y2="150"
         stroke="url(#ai-line)"
         strokeWidth="2"
-        initial={{ pathLength: 0 }}
-        whileInView={{ pathLength: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 1.4, ease: "easeInOut" }}
+        strokeDasharray="8 6"
       />
 
       {steps.map((s, i) => (
-        <motion.g
-          key={i}
-          initial={{ opacity: 0, scale: 0.6 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.15 * i, type: "spring" }}
+        <g
+          key={s.label}
+          className="svg-node"
+          style={{ "--delay": `${0.15 * i}s` } as CSSProperties}
         >
           <rect
             x={s.x - 38}
@@ -52,18 +46,7 @@ export function AIWorkflow() {
             strokeWidth="1.5"
           />
           {i === 1 ? (
-            <motion.circle
-              cx={s.x}
-              cy="150"
-              r="16"
-              fill="none"
-              stroke="#06B6D4"
-              strokeWidth="2"
-              strokeDasharray="4 4"
-              animate={{ rotate: 360 }}
-              transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
-              style={{ transformOrigin: `${s.x}px 150px` }}
-            />
+            <circle className="svg-spin" cx={s.x} cy="150" r="16" fill="none" stroke="#06B6D4" strokeWidth="2" strokeDasharray="4 4" />
           ) : (
             <circle cx={s.x} cy="150" r="10" fill="#DBEAFE" stroke="#2563EB" strokeWidth="1.5" />
           )}
@@ -77,10 +60,12 @@ export function AIWorkflow() {
           >
             {s.label}
           </text>
-        </motion.g>
+        </g>
       ))}
 
-      <motion.circle r="4" fill="#06B6D4" cy={150} animate={{ cx: [60, 460] }} transition={{ duration: 3.2, repeat: Infinity, ease: "linear" }} />
+      <circle r="4" fill="#06B6D4" cy="150">
+        <animate attributeName="cx" values="60;460" dur="3.2s" repeatCount="indefinite" />
+      </circle>
     </svg>
   );
 }

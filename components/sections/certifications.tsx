@@ -24,11 +24,13 @@ export function Certifications() {
                   <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
                     <Icon className="h-5.5 w-5.5" />
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <h3 className="font-bold text-slate-900">{tr(cert.title)}</h3>
                     <div className="mt-1 text-xs font-semibold text-slate-500">{cert.organization}</div>
                     <div className="mt-0.5 text-xs text-slate-400">{tr(cert.date)}</div>
-                    <p className="mt-2.5 text-sm leading-relaxed text-slate-600">{tr(cert.description)}</p>
+                    {cert.description ? (
+                      <p className="mt-2.5 text-sm leading-relaxed text-slate-600">{tr(cert.description)}</p>
+                    ) : null}
                   </div>
                 </div>
               </FadeIn>

@@ -1,8 +1,56 @@
-import * as Icons from "lucide-react";
-import type { LucideIcon } from "lucide-react";
+import {
+  BarChart3,
+  Bot,
+  Brain,
+  Building2,
+  CheckCircle,
+  ClipboardCheck,
+  Globe2,
+  Headset,
+  Landmark,
+  Lock,
+  Network,
+  Package,
+  Radio,
+  ServerCog,
+  Shield,
+  ShieldCheck,
+  ShoppingCart,
+  Signature,
+  Sparkles,
+  Target,
+  Ticket,
+  Workflow,
+  Wrench,
+  type LucideIcon,
+} from "lucide-react";
 
-const iconMap = Icons as unknown as Record<string, LucideIcon>;
+const iconMap: Record<string, LucideIcon> = {
+  BarChart3,
+  Bot,
+  Brain,
+  Building2,
+  CheckCircle,
+  ClipboardCheck,
+  Globe2,
+  Headset,
+  Landmark,
+  Lock,
+  Network,
+  Package,
+  Radio,
+  ServerCog,
+  Shield,
+  ShieldCheck,
+  ShoppingCart,
+  Signature,
+  Sparkles,
+  Target,
+  Ticket,
+  Workflow,
+  Wrench,
+};
 
-export function getIcon(name: string, fallback: LucideIcon = Icons.Sparkles): LucideIcon {
+export function getIcon(name: string, fallback: LucideIcon = Sparkles): LucideIcon {
   return iconMap[name] ?? fallback;
 }

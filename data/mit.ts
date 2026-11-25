@@ -15,29 +15,35 @@ export const mitSystem: ProjectDetail = {
     {
       name: { id: 'Ticketing & Incident Management', en: 'Ticketing & Incident Management' },
       description: {
-        id: 'Sistem tiket terpusat untuk intake, tracking, dan resolusi insiden IT lintas site dengan SLA terukur. 214 tiket hardware, software, OS, dan jaringan diselesaikan tanpa engineer on-site di setiap lokasi.',
-        en: 'Centralized ticketing system for intake, tracking, and resolution of IT incidents across sites with measurable SLAs. 214 tickets (hardware, software, OS, network) resolved without dedicated on-site engineers at each location.',
+        id: 'Sistem tiket terpusat untuk intake, tracking, dan resolusi insiden IT lintas site. 214 tiket hardware, software, OS, dan jaringan diselesaikan melalui alur MIT System di 6 site.',
+        en: 'Centralized ticketing system for intake, tracking, and resolution of IT incidents across sites. 214 hardware, software, OS, and network tickets were resolved through the MIT System workflow across 6 sites.',
       },
       icon: 'Ticket',
-      metrics: { id: '214 tiket · 92% SLA', en: '214 tickets · 92% SLA' },
+      metrics: { id: '214 tiket · 6 site', en: '214 tickets · 6 sites' },
     },
     {
       name: { id: 'IT Assessment', en: 'IT Assessment' },
       description: {
-        id: 'Pipeline assessment untuk audit compliance, vulnerability, dan readiness IT di seluruh site. Received → Completed tracking menggantikan follow-up manual. 49 dari 53 assessment (92%) diselesaikan.',
-        en: 'Assessment pipeline for IT compliance audits, vulnerability checks, and readiness across all sites. Received → Completed tracking replaces manual follow-ups. 49 of 53 assessments (92%) completed.',
+        id: 'Pipeline assessment untuk compliance, vulnerability, dan readiness IT di seluruh site. Received → Completed tracking menggantikan follow-up manual. 100% assessment selesai di Karawang (27/27) dan Sentul (11/11).',
+        en: 'Assessment pipeline for compliance, vulnerability, and IT readiness across all sites. Received → Completed tracking replaces manual follow-ups. 100% of assessments closed at Karawang (27/27) and Sentul (11/11).',
       },
       icon: 'CheckCircle',
-      metrics: { id: '49/53 assessment · 92% completion', en: '49/53 assessments · 92% completion' },
+      metrics: {
+        id: '100% Karawang (27/27) · 100% Sentul (11/11)',
+        en: '100% Karawang (27/27) · 100% Sentul (11/11)',
+      },
     },
     {
       name: { id: 'IT Service Requests', en: 'IT Service Requests' },
       description: {
-        id: 'Portal self-service untuk pengajuan layanan IT (setup user, provisioning, instalasi software, dst). Real-time visibility untuk site manager. 47 dari 51 (92%) diselesaikan — 100% di Karawang dan Sentul.',
-        en: 'Self-service portal for IT service requests (user setup, provisioning, software installation, etc.). Real-time visibility for site managers. 47 of 51 (92%) completed — 100% at Karawang and Sentul.',
+        id: 'Portal self-service untuk pengajuan layanan IT (setup user, provisioning, instalasi software, dst). Real-time visibility untuk site manager. 94% service request di Karawang (32/34) terselesaikan.',
+        en: 'Self-service portal for IT service requests (user setup, provisioning, software installation, etc.). Real-time visibility for site managers. 94% of service requests at Karawang (32/34) were closed.',
       },
       icon: 'Headset',
-      metrics: { id: '47/51 request · 92% completion · 100% Karawang/Sentul', en: '47/51 requests · 92% completion · 100% Karawang/Sentul' },
+      metrics: {
+        id: '94% Karawang (32/34)',
+        en: '94% Karawang (32/34)',
+      },
     },
     {
       name: { id: 'Asset Management', en: 'Asset Management' },
@@ -46,7 +52,7 @@ export const mitSystem: ProjectDetail = {
         en: 'Centralized inventory for hardware, software licenses, endpoints, and other IT assets. Automated tracking for compliance audits and lifecycle management.',
       },
       icon: 'Package',
-      metrics: { id: '241 endpoint · 6 site', en: '241 endpoints · 6 sites' },
+      metrics: { id: 'Aset & lisensi · 6 site', en: 'Assets & licenses · 6 sites' },
     },
     {
       name: { id: 'Software Procurement & License Management', en: 'Software Procurement & License Management' },
@@ -87,11 +93,14 @@ export const mitSystem: ProjectDetail = {
     {
       name: { id: 'Preventive Security & Policy Enforcement', en: 'Preventive Security & Policy Enforcement' },
       description: {
-        id: 'Automated policy enforcement: blocklist/allowlist management untuk software, suspicious connection detection, dan unauthorized user alerts. 550 security issues di 243 device terdeteksi dan diremediate.',
-        en: 'Automated policy enforcement: software blocklist/allowlist management, suspicious connection detection, and unauthorized user alerts. 550 security issues across 243 devices detected and remediated.',
+        id: 'Automated policy enforcement: blocklist/allowlist management untuk software, suspicious connection detection, dan unauthorized user alerts. 550 temuan kerentanan terselesaikan di 243 endpoint dengan Wazuh.',
+        en: 'Automated policy enforcement: software blocklist/allowlist management, suspicious connection detection, and unauthorized user alerts. 550 vulnerability findings resolved across 243 endpoints with Wazuh.',
       },
       icon: 'Shield',
-      metrics: { id: '550 security issues resolved · 243 devices', en: '550 security issues resolved · 243 devices' },
+      metrics: {
+        id: '550 temuan terselesaikan · 243 endpoint',
+        en: '550 findings resolved · 243 endpoints',
+      },
     },
     {
       name: { id: 'IDS Integration (Suricata)', en: 'IDS Integration (Suricata)' },
@@ -116,15 +125,15 @@ export const mitSystem: ProjectDetail = {
       {
         name: 'Wazuh Security Monitoring',
         description: {
-          id: 'Endpoint detection & response (EDR) di 118 laptop + 125 PC untuk vulnerability detection, threat hunting, dan malware analysis.',
-          en: 'Endpoint detection & response (EDR) on 118 laptops + 125 PCs for vulnerability detection, threat hunting, and malware analysis.',
+          id: 'Vulnerability Detection, Threat Hunting, dan Malware Detection di 118 laptop + 125 PC.',
+          en: 'Vulnerability Detection, Threat Hunting, and Malware Detection on 118 laptops + 125 PCs.',
         },
       },
       {
-        name: 'Endpoint Agent',
+        name: 'Endpoint Software Policy Monitoring',
         description: {
-          id: 'Custom agent mengumpulkan IP, MAC, hardware specs, installed software, connection summaries, dan packet capture via Windows pktmon. Deploy via installer, rollback via uninstall script.',
-          en: 'Custom agent collects IP, MAC, hardware specs, installed software, connection summaries, and packet capture via Windows pktmon. Deploy via installer; rollback via uninstall script.',
+          id: 'Pemantauan software terinstal terhadap blocklist/allowlist di MIT, dengan alert untuk software tidak resmi dan koneksi mencurigakan.',
+          en: 'Monitoring of installed software against MIT blocklist/allowlist, with alerts for unauthorized software and suspicious connections.',
         },
       },
       {
@@ -146,12 +155,12 @@ export const mitSystem: ProjectDetail = {
   impact: {
     title: { id: 'Dampak Bisnis', en: 'Business Impact' },
     metrics: [
-      { label: { id: 'Downtime IT', en: 'IT Downtime' }, value: '↓~40%', detail: { id: 'Des 2025–Sep', en: 'Dec 2025–Sep' } },
-      { label: { id: 'Tiket Terselesaikan', en: 'Tickets Closed' }, value: '214', detail: { id: 'Hardware, Software, OS, Network', en: 'Hardware, Software, OS, Network' } },
-      { label: { id: 'Assessment Completion', en: 'Assessment Completion' }, value: '92%', detail: { id: '49 dari 53', en: '49 of 53' } },
-      { label: { id: 'Service Request Completion', en: 'Service Request Completion' }, value: '92%', detail: { id: '47 dari 51', en: '47 of 51' } },
-      { label: { id: 'Security Issues Resolved', en: 'Security Issues Resolved' }, value: '550', detail: { id: 'Di 243 device', en: 'Across 243 devices' } },
-      { label: { id: 'Endpoint Coverage', en: 'Endpoint Coverage' }, value: '241', detail: { id: 'Windows endpoint di 4 site', en: 'Windows endpoints across 4 sites' } },
+      { label: { id: 'Downtime IT', en: 'IT Downtime' }, value: '↓~40%', detail: { id: 'MIT System · 6 site', en: 'MIT System · 6 sites' } },
+      { label: { id: 'Tiket Terselesaikan', en: 'Tickets Closed' }, value: '214', detail: { id: 'Hardware, software, OS, jaringan', en: 'Hardware, software, OS, network' } },
+      { label: { id: 'Temuan Kerentanan', en: 'Vulnerability Findings' }, value: '550', detail: { id: '243 endpoint · termasuk 6 critical', en: '243 endpoints · including 6 critical' } },
+      { label: { id: 'Alert High', en: 'High-Severity Alerts' }, value: '503', detail: { id: 'Dibersihkan dengan Wazuh', en: 'Cleared with Wazuh' } },
+      { label: { id: 'Alert Medium', en: 'Medium-Severity Alerts' }, value: '15,732', detail: { id: 'Dibersihkan dengan Wazuh', en: 'Cleared with Wazuh' } },
+      { label: { id: 'Endpoint Suricata IDS', en: 'Suricata IDS Endpoints' }, value: '241', detail: { id: 'Windows endpoint di 4 site', en: 'Windows endpoints across 4 sites' } },
     ],
   },
   stack: {

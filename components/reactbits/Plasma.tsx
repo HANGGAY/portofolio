@@ -22,7 +22,7 @@ void main() {
 
 const ORIGINAL_QUALITY = 60;
 
-const buildFragment = (iterations: number) => `#version 300 es
+const buildFragment = () => `#version 300 es
 precision highp float;
 uniform vec2 iResolution;
 uniform float iTime;
@@ -142,7 +142,7 @@ export default function Plasma({
     const geometry = new Triangle(gl);
     const program = new Program(gl, {
       vertex,
-      fragment: buildFragment(iterations),
+      fragment: buildFragment(),
       uniforms: {
         iTime: { value: 0 },
         iResolution: { value: new Float32Array([1, 1]) },
@@ -213,7 +213,7 @@ export default function Plasma({
         m[0] = mousePos.current.x;
         m[1] = mousePos.current.y;
       }
-      let timeValue = (t - t0) * 0.001;
+      const timeValue = (t - t0) * 0.001;
       if (direction === "pingpong") {
         const dur = 10;
         const seg = timeValue % dur;

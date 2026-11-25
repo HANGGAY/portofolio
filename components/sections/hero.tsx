@@ -8,30 +8,29 @@ import { useLanguage } from "@/components/providers/language-provider";
 import { Container } from "@/components/ui/container";
 import { CountStat } from "@/components/motion/count-stat";
 import { GooeyButton } from "@/components/reactbits/GooeyButton";
-import Ferrofluid from "@/components/reactbits/Ferrofluid";
 
+const Ferrofluid = dynamic(() => import("@/components/reactbits/Ferrofluid"), { ssr: false });
 const Lanyard = dynamic(() => import("@/components/reactbits/Lanyard"), { ssr: false, loading: () => <div className="h-[420px] lg:h-[520px] w-full animate-pulse rounded-3xl bg-slate-100" /> });
 
 function useTypingEffect(text: string, speed = 45) {
-  const [display, setDisplay] = useState("");
+  const [state, setState] = useState({ source: text, text: "" });
   useEffect(() => {
-    setDisplay("");
     let i = 0;
     const interval = setInterval(() => {
       i += 1;
-      setDisplay(text.slice(0, i));
+      setState({ source: text, text: text.slice(0, i) });
       if (i >= text.length) clearInterval(interval);
     }, speed);
     return () => clearInterval(interval);
   }, [text, speed]);
-  return display;
+  return state.source === text ? state.text : "";
 }
 
 export function Hero() {
   const { t, tr } = useLanguage();
   const role = tr(profile.role);
   const typed = useTypingEffect(role);
-  const [lanyardReady, setLanyardReady] = useState(false);
+  const [visualsReady, setVisualsReady] = useState(false);
 
   useEffect(() => {
     const idleWindow = window as Window & {
@@ -39,10 +38,10 @@ export function Hero() {
       cancelIdleCallback?: (handle: number) => void;
     };
     if (idleWindow.requestIdleCallback) {
-      const handle = idleWindow.requestIdleCallback(() => setLanyardReady(true), { timeout: 900 });
+      const handle = idleWindow.requestIdleCallback(() => setVisualsReady(true), { timeout: 900 });
       return () => idleWindow.cancelIdleCallback?.(handle);
     }
-    const handle = window.setTimeout(() => setLanyardReady(true), 250);
+    const handle = window.setTimeout(() => setVisualsReady(true), 250);
     return () => window.clearTimeout(handle);
   }, []);
 
@@ -50,22 +49,26 @@ export function Hero() {
     <section id="hero" className="relative overflow-hidden bg-white pt-10 pb-16 sm:pt-14 sm:pb-24">
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute inset-0 opacity-[0.55]">
-          <Ferrofluid
-            colors={["#3f3f46", "#71717a", "#a1a1aa", "#e4e4e7"]}
-            speed={0.28}
-            scale={1.9}
-            turbulence={0.85}
-            fluidity={0.12}
-            rimWidth={0.22}
-            sharpness={2.2}
-            shimmer={1.2}
-            glow={1.7}
-            opacity={0.95}
-            flowDirection="down"
-            mouseInteraction
-            mouseStrength={0.9}
-            mouseRadius={0.42}
-          />
+          {visualsReady ? (
+            <Ferrofluid
+              colors={["#3f3f46", "#71717a", "#a1a1aa", "#e4e4e7"]}
+              speed={0.28}
+              scale={1.9}
+              turbulence={0.85}
+              fluidity={0.12}
+              rimWidth={0.22}
+              sharpness={2.2}
+              shimmer={1.2}
+              glow={1.7}
+              opacity={0.95}
+              flowDirection="down"
+              mouseInteraction
+              mouseStrength={0.9}
+              mouseRadius={0.42}
+            />
+          ) : (
+            <div className="absolute inset-0 bg-gradient-to-br from-slate-100 via-white to-slate-200" />
+          )}
         </div>
         <div className="absolute inset-0 bg-white/72 backdrop-blur-[0.5px]" />
         <div className="absolute inset-0 opacity-[0.18]" style={{ backgroundImage: "linear-gradient(#cbd5e1 1px, transparent 1px), linear-gradient(90deg, #cbd5e1 1px, transparent 1px)", backgroundSize: "56px 56px", maskImage: "radial-gradient(ellipse 90% 70% at 50% 0%, black 30%, transparent 82%)" }} />
@@ -127,14 +130,16 @@ export function Hero() {
         <motion.div initial={{ opacity: 0, scale: 0.94, y: 18 }} animate={{ opacity: 1, scale: 1, y: 0 }} transition={{ duration: 0.75, delay: 0.18, ease: [0.22, 1, 0.36, 1] }} className="order-1 lg:order-2 relative mx-auto w-full max-w-[460px] lg:mx-0 lg:max-w-none">
           <div className="pointer-events-none absolute -inset-8 -z-10 rounded-[2.5rem] bg-gradient-to-br from-blue-600/20 via-cyan-400/10 to-transparent blur-2xl" />
           <div className="relative">
-            {lanyardReady ? (
+            {visualsReady ? (
               <Lanyard
-                position={[0, 0, 20]}
+                position={[0, 0, 24]}
                 gravity={[0, -40, 0]}
                 frontImage="/images/hanggaylanyard.jpeg"
                 backImage="/images/hanggaylanyard.jpeg"
                 imageFit="cover"
                 lanyardWidth={1}
+                groupPosition={[-0.8, 2, 0]}
+                cardScale={2.8}
               />
             ) : (
               <div className="h-[420px] w-full animate-pulse rounded-3xl bg-slate-100 lg:h-[520px]" />

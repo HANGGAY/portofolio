@@ -6,13 +6,12 @@ import { Footer } from '@/components/layout/footer';
 import { mitSystem } from '@/data/mit';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowLeft, CheckCircle2, FileText, Users, ChevronRight, Headset, AlertCircle, CalendarDays, Loader2, Ticket, CheckCircle, Package, ShoppingCart, Wrench, KeyRound, FileSignature, FolderOpen } from 'lucide-react';
+import { ArrowLeft, CheckCircle2, FileText, Users, ChevronRight, Headset, AlertCircle, Loader2, Ticket, Package, ShoppingCart, Wrench } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import { useLanguage } from '@/components/providers/language-provider';
 import ShapeGrid from '@/components/reactbits/ShapeGrid';
 
 const Plasma = dynamic(() => import('@/components/reactbits/Plasma'), { ssr: false });
-const AcidSquares = dynamic(() => import('@/components/reactbits/AcidSquares'), { ssr: false });
 
 export default function MitPage() {
   const { tr } = useLanguage();
@@ -28,7 +27,7 @@ export default function MitPage() {
     { id: 'hod', label: 'HOD User', icon: AlertCircle },
   ];
 
-  const galleryCategories = [
+  const galleryCategories: { key: 'all' | 'mit' | 'esign'; label: string }[] = [
     { key: 'all', label: 'Semua Galeri' },
     { key: 'mit', label: 'MIT System' },
     { key: 'esign', label: 'E-Sign & ISO' },
@@ -135,7 +134,7 @@ export default function MitPage() {
                 {galleryCategories.map((cat) => (
                   <button
                     key={cat.key}
-                    onClick={() => setActiveTab(cat.key as any)}
+                    onClick={() => setActiveTab(cat.key)}
                     className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-all ${
                       activeTab === cat.key
                         ? 'bg-slate-900 text-white shadow-sm'

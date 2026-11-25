@@ -35,19 +35,23 @@ export default function GooeyNav({
   const textRef = useRef<HTMLSpanElement>(null);
   const [internalActive, setInternalActive] = useState(initialActiveIndex);
   const activeIndex = controlledActive !== undefined ? controlledActive : internalActive;
-  const noise = (n = 1) => n / 2 - Math.random() * n;
+  const hash = (seed: number) => {
+    const value = Math.sin(seed * 12.9898) * 43758.5453;
+    return value - Math.floor(value);
+  };
+  const noise = (n = 1, seed = 0) => n / 2 - hash(seed + 1) * n;
   const getXY = (distance: number, pointIndex: number, totalPoints: number) => {
-    const angle = ((360 + noise(8)) / totalPoints) * pointIndex * (Math.PI / 180);
+    const angle = ((360 + noise(8, pointIndex * 3 + 1)) / totalPoints) * pointIndex * (Math.PI / 180);
     return [distance * Math.cos(angle), distance * Math.sin(angle)];
   };
   const createParticle = (i: number, t: number, d: number[], r: number) => {
-    const rotate = noise(r / 10);
+    const rotate = noise(r / 10, i * 11 + 3);
     return {
       start: getXY(d[0], particleCount - i, particleCount),
-      end: getXY(d[1] + noise(7), particleCount - i, particleCount),
+      end: getXY(d[1] + noise(7, i * 13 + 4), particleCount - i, particleCount),
       time: t,
-      scale: 1 + noise(0.2),
-      color: colors[Math.floor(Math.random() * colors.length)],
+      scale: 1 + noise(0.2, i * 7 + 2),
+      color: colors[(i * 7 + 3) % colors.length],
       rotate: rotate > 0 ? (rotate + r / 20) * 10 : (rotate - r / 20) * 10,
     };
   };
@@ -57,7 +61,7 @@ export default function GooeyNav({
     const bubbleTime = animationTime * 2 + timeVariance;
     element.style.setProperty("--time", `${bubbleTime}ms`);
     for (let i = 0; i < particleCount; i++) {
-      const t = animationTime * 2 + noise(timeVariance * 2);
+      const t = animationTime * 2 + noise(timeVariance * 2, i * 17 + 5);
       const p = createParticle(i, t, d, r);
       element.classList.remove("active");
       setTimeout(() => {

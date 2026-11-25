@@ -1,7 +1,7 @@
 "use client";
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, ShieldCheck } from "lucide-react";
 import { getIcon } from "@/lib/icons";
 import { experience } from "@/data/experience";
 import { useLanguage } from "@/components/providers/language-provider";
@@ -41,6 +41,23 @@ export function Experience() {
                         <span className="whitespace-nowrap rounded-full border border-slate-200 bg-slate-900 px-3 py-1.5 text-[11px] font-bold tracking-wide text-white">{item.date}</span>
                       </div>
                       <p className="mt-4 text-sm leading-relaxed text-slate-600">{tr(item.description)}</p>
+                      {item.bullets?.length ? (
+                        <div className="mt-6 space-y-6">
+                          {item.bullets.map((group, groupIndex) => (
+                            <div key={groupIndex}>
+                              <div className="mb-3 text-[11px] font-extrabold uppercase tracking-widest text-blue-700">{tr(group.heading)}</div>
+                              <ul className="space-y-3">
+                                {group.items.map((bullet, bulletIndex) => (
+                                  <li key={bulletIndex} className="flex gap-2.5 text-sm leading-relaxed text-slate-600">
+                                    <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-blue-600" />
+                                    <span className="min-w-0 break-words">{tr(bullet)}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          ))}
+                        </div>
+                      ) : null}
                       {item.responsibilities?.length ? (
                         <div className="mt-6">
                           <div className="mb-2 text-[11px] font-extrabold uppercase tracking-widest text-slate-500">{t("exp.responsibilities")}</div>
@@ -76,6 +93,25 @@ export function Experience() {
                         <ImpactIcon className="h-4 w-4 shrink-0 mt-0.5" />
                         <span>{tr(item.impact)}</span>
                       </div>
+                      {i === 0 ? (
+                        <Link
+                          href="/security"
+                          className="group mt-3 flex items-center justify-between gap-4 rounded-xl border border-blue-200 bg-blue-50 px-4 py-3.5 text-blue-900 transition-colors hover:bg-blue-100"
+                        >
+                          <div className="flex min-w-0 items-start gap-3">
+                            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-blue-600 text-white">
+                              <ShieldCheck className="h-4 w-4" />
+                            </span>
+                            <div className="min-w-0">
+                              <div className="text-sm font-bold">{t("exp.security.label")}</div>
+                              <div className="mt-0.5 text-xs leading-relaxed text-blue-700">{t("exp.security.sub")}</div>
+                            </div>
+                          </div>
+                          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-blue-600/10 text-blue-700 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
+                            <ArrowUpRight className="h-4 w-4" />
+                          </span>
+                        </Link>
+                      ) : null}
                       {item.link ? (
                         <Link
                           href={item.link.href}

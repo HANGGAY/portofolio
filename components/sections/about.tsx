@@ -49,14 +49,21 @@ export function About() {
           <FadeIn delay={0.15}>
             <div className="rounded-2xl border border-slate-200 bg-white p-7 shadow-sm">
               <div className="mb-2 text-xs font-bold uppercase tracking-widest text-slate-500">{t("about.edu_label")}</div>
-              <div className="font-bold text-slate-900">{about.education.institution}</div>
-              <div className="mt-0.5 text-sm font-semibold text-blue-600">{tr(about.education.degree)}</div>
-              <div className="mt-0.5 text-xs text-slate-500">{tr(about.education.detail)}</div>
+              {about.education.map((edu, i) => (
+                <div key={i} className={i === 0 ? "" : "mt-4 border-t border-slate-200 pt-4"}>
+                  <div className="font-bold text-slate-900">{edu.institution}</div>
+                  <div className="mt-0.5 text-sm font-semibold text-blue-600">{tr(edu.degree)}</div>
+                  <div className="mt-0.5 text-xs text-slate-500">{tr(edu.detail)}</div>
+                  {edu.expectedYear ? (
+                    <div className="mt-0.5 text-xs text-slate-500">{tr(edu.expectedYear)}</div>
+                  ) : null}
+                </div>
+              ))}
               <div className="my-6 border-t border-slate-200" />
               <div className="mb-3 text-xs font-bold uppercase tracking-widest text-slate-500">{t("about.area_label")}</div>
               <div className="flex flex-wrap gap-2">
-                {about.focusAreas.map((tag) => (
-                  <span key={tag} className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-medium text-slate-600">{tag}</span>
+                {about.focusAreas.map((area, i) => (
+                  <span key={i} className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-medium text-slate-600">{tr(area)}</span>
                 ))}
               </div>
               <div className="my-6 border-t border-slate-200" />

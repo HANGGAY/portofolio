@@ -24,6 +24,8 @@ export default function Lanyard({
   imageFit = "cover",
   lanyardImage = null,
   lanyardWidth = 1,
+  groupPosition = [0, 4, 0],
+  cardScale = 2.25,
 }: {
   position?: [number, number, number];
   gravity?: [number, number, number];
@@ -34,6 +36,8 @@ export default function Lanyard({
   imageFit?: "cover" | "contain";
   lanyardImage?: string | null;
   lanyardWidth?: number;
+  groupPosition?: [number, number, number];
+  cardScale?: number;
 }) {
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
@@ -59,6 +63,8 @@ export default function Lanyard({
             imageFit={imageFit}
             lanyardImage={lanyardImage}
             lanyardWidth={lanyardWidth}
+            groupPosition={groupPosition}
+            cardScale={cardScale}
           />
         </Physics>
         <Environment blur={0.75}>
@@ -81,6 +87,8 @@ function Band({
   imageFit = "cover",
   lanyardImage = null,
   lanyardWidth = 1,
+  groupPosition = [0, 4, 0],
+  cardScale = 2.25,
 }: {
   maxSpeed?: number;
   minSpeed?: number;
@@ -90,6 +98,8 @@ function Band({
   imageFit?: string;
   lanyardImage?: string | null;
   lanyardWidth?: number;
+  groupPosition?: [number, number, number];
+  cardScale?: number;
 }) {
   const band = useRef<THREE.Mesh>(null);
   const fixed = useRef<never>(null);
@@ -103,7 +113,14 @@ function Band({
   const dir = new THREE.Vector3();
   const segmentProps = { type: "dynamic" as const, canSleep: true, colliders: false, angularDamping: 4, linearDamping: 4 };
   const { nodes, materials } = useGLTF("/card.glb") as unknown as { nodes: { card: THREE.Mesh; clip: THREE.Mesh; clamp: THREE.Mesh }; materials: { base: THREE.MeshPhysicalMaterial & { map: THREE.Texture }; metal: THREE.Material } };
-  const texture = useTexture(lanyardImage || "/lanyard.png");
+  const sourceTexture = useTexture(lanyardImage || "/lanyard.png");
+  const texture = useMemo(() => {
+    const mapped = sourceTexture.clone();
+    mapped.wrapS = THREE.RepeatWrapping;
+    mapped.wrapT = THREE.RepeatWrapping;
+    mapped.needsUpdate = true;
+    return mapped;
+  }, [sourceTexture]);
   const frontTex = useTexture(frontImage || BLANK_PIXEL);
   const backTex = useTexture(backImage || BLANK_PIXEL);
 
@@ -148,7 +165,11 @@ function Band({
     return composite;
   }, [frontImage, backImage, imageFit, frontTex, backTex, materials.base]);
 
-  const [curve] = useState(() => new THREE.CatmullRomCurve3([new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3()]));
+  const [curve] = useState(() => {
+    const next = new THREE.CatmullRomCurve3([new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3()]);
+    next.curveType = "chordal";
+    return next;
+  });
   const [dragged, drag] = useState<false | THREE.Vector3>(false);
   const [hovered, hover] = useState(false);
 
@@ -200,12 +221,9 @@ function Band({
     }
   });
 
-  curve.curveType = "chordal";
-  texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-
   return (
     <>
-      <group position={[0, 4, 0]}>
+      <group position={groupPosition}>
         {/* @ts-expect-error rapier types */}
         <RigidBody ref={fixed} {...segmentProps} type="fixed" />
         {/* @ts-expect-error rapier types */}
@@ -224,7 +242,7 @@ function Band({
         <RigidBody position={[2, 0, 0]} ref={card} {...segmentProps} type={dragged ? "kinematicPosition" : "dynamic"}>
           <CuboidCollider args={[0.8, 1.125, 0.01]} />
           <group
-            scale={2.25}
+            scale={cardScale}
             position={[0, -1.2, -0.05]}
             onPointerOver={() => hover(true)}
             onPointerOut={() => hover(false)}

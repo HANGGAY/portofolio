@@ -5,37 +5,55 @@ export const impactStats: ImpactStat[] = [
     prefix: "↓",
     value: 40,
     suffix: "%",
-    label: { id: "Penurunan IT Downtime", en: "IT Downtime Reduction" },
-    description: { id: "Melalui MIT System · Des 2025–Sep", en: "Via MIT System · Dec 2025–Sep" },
+    label: { id: "Penurunan Downtime IT", en: "IT Downtime Reduction" },
+    description: {
+      id: "Melalui digitalisasi alur MIT System di 6 site",
+      en: "Through digitized MIT System workflow across 6 sites",
+    },
   },
   {
-    value: 6,
+    value: 550,
     suffix: "",
-    label: { id: "Site Enterprise Dikelola", en: "Enterprise Sites Managed" },
-    description: { id: "Karawang, Head Office, Sentul, Cikarang, Palmerah, Cimanggis", en: "Karawang, Head Office, Sentul, Cikarang, Palmerah, Cimanggis" },
+    label: {
+      id: "Temuan Kerentanan Terselesaikan",
+      en: "Vulnerability Findings Resolved",
+    },
+    description: {
+      id: "Wazuh · 243 endpoint (118 laptop, 125 PC) · termasuk 6 critical",
+      en: "Wazuh · 243 endpoints (118 laptops, 125 PCs) · including 6 critical",
+    },
+  },
+  {
+    value: 503,
+    suffix: "",
+    label: { id: "Alert High Dibersihkan", en: "High-Severity Alerts Cleared" },
+    description: { id: "Wazuh · brute-force & software rentan", en: "Wazuh · brute-force & vulnerable software" },
+  },
+  {
+    value: 15732,
+    suffix: "",
+    label: { id: "Alert Medium Dibersihkan", en: "Medium-Severity Alerts Cleared" },
+    description: {
+      id: "Wazuh · software tidak resmi & tidak berlisensi",
+      en: "Wazuh · unauthorized & unlicensed software",
+    },
+  },
+  {
+    value: 241,
+    suffix: "",
+    label: { id: "Endpoint Suricata IDS", en: "Suricata IDS Endpoints" },
+    description: {
+      id: "Dimonitor di 4 site · alert masuk ke MIT System",
+      en: "Monitored across 4 sites · alerts flow into the MIT System",
+    },
   },
   {
     value: 214,
     suffix: "",
     label: { id: "Tiket Terselesaikan", en: "Tickets Resolved" },
-    description: { id: "Hardware, software, OS, jaringan — 6 site, 92% SLA", en: "Hardware, software, OS, network — 6 sites, 92% SLA" },
-  },
-  {
-    value: 92,
-    suffix: "%",
-    label: { id: "Assessment & Request Selesai", en: "Assessments & Requests Closed" },
-    description: { id: "49/53 assessment · 47/51 service request", en: "49/53 assessments · 47/51 service requests" },
-  },
-  {
-    value: 70,
-    suffix: "+",
-    label: { id: "Pengguna Migrasi OS", en: "Users Migrated (OS)" },
-    description: { id: "Windows → Linux Mint di 3 site operasional", en: "Windows → Linux Mint across 3 operational sites" },
-  },
-  {
-    value: 99,
-    suffix: "%",
-    label: { id: "Ketersediaan Infrastruktur", en: "Infrastructure Availability" },
-    description: { id: "Target SLA konsisten terpenuhi", en: "SLA targets consistently met" },
+    description: {
+      id: "Hardware, software, OS, jaringan · MIT System",
+      en: "Hardware, software, OS, network · MIT System",
+    },
   },
 ];

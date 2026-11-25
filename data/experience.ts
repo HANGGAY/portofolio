@@ -2,119 +2,103 @@ import type { TimelineEntry } from '@/types';
 
 export const experience: TimelineEntry[] = [
   {
-    role: { id: 'Staff IT Helpdesk, Network Support & Development', en: 'Staff IT Helpdesk, Network Support & Development' },
+    role: {
+      id: 'Staff IT Helpdesk, Support Network & Development',
+      en: 'Staff IT Helpdesk, Support Network & Development',
+    },
     company: 'DINARSMU INDUSTRIES, Jakarta',
     type: {
-      id: 'Enterprise Multi-Site · 6 Operational Sites (Karawang, Head Office, Sentul, Cikarang, Palmerah & Cimanggis)',
-      en: 'Enterprise Multi-Site · 6 Operational Sites (Karawang, Head Office, Sentul, Cikarang, Palmerah & Cimanggis)',
+      id: 'Enterprise Multi-Site · 6 site operasional (Karawang, Head Office, Sentul, Cikarang, Palmerah, Cimanggis)',
+      en: 'Enterprise Multi-Site · 6 operational sites (Karawang, Head Office, Sentul, Cikarang, Palmerah, Cimanggis)',
     },
     date: 'July 2025 – Present',
     description: {
-      id: 'Mengelola operasi IT lintas 6 site sebagai central coordination hub — ticketing, aset, dan layanan IT terpusat lewat MIT System sebagai single operational platform. Menekan downtime ~40% (Des 2025–Sep) dan mencapai 92% penyelesaian assessment & service request.',
-      en: 'Managing IT operations across 6 sites as central coordination hub — ticketing, assets, and IT services centralized via the MIT System as the single operational platform. Cutting downtime ~40% (Dec 2025–Sep) and achieving 92% assessment & service request closure.',
+      id: 'Beralih dari operasi IT ke Blue Team / SOC / Security Engineering di grup manufaktur dan kantor 6 site. 550 temuan kerentanan terselesaikan · 503 alert high + 15,732 alert medium dibersihkan · Suricata IDS terintegrasi dengan ITSM internal · downtime turun ~40%.',
+      en: 'Moving from IT operations into Blue Team / SOC / Security Engineering across a 6-site manufacturing and office group. 550 vulnerability findings resolved · 503 high + 15,732 medium alerts cleared · Suricata IDS integrated with in-house ITSM · downtime down ~40%.',
     },
-    responsibilities: [
+    bullets: [
       {
-        id: 'Menyelesaikan 214 tiket hardware, software, OS, dan jaringan di 6 site (Karawang, Head Office, Sentul, Cikarang, Palmerah, Cimanggis) dengan membangun MIT System — platform in-house yang menggantikan spreadsheet/WhatsApp/email untuk ticketing, aset, service request, dan work order (SPK).',
-        en: 'Resolved 214 hardware, software, OS, and network tickets across 6 sites (Karawang, Head Office, Sentul, Cikarang, Palmerah, Cimanggis) by building the MIT System — an in-house platform replacing spreadsheets/WhatsApp/email for ticketing, assets, service requests, and work orders (SPK).',
+        heading: {
+          id: 'Security Engineering & Monitoring',
+          en: 'Security Engineering & Monitoring',
+        },
+        items: [
+          {
+            id: 'Mengimplementasikan Wazuh di 243 endpoint (118 laptop, 125 PC) dan menyelesaikan 550 temuan kerentanan, termasuk seluruh 6 temuan critical yang disebabkan software rentan, dengan memprioritaskan berdasarkan severity dan mengoordinasikan update aplikasi, OS, dan sistem internal.',
+            en: 'Implemented Wazuh across 243 endpoints (118 laptops, 125 PCs) and resolved 550 vulnerability findings, including all 6 critical-severity findings caused by vulnerable software, by prioritizing by severity and coordinating application, OS, and internal-system updates.',
+          },
+          {
+            id: 'Membersihkan 503 alert Wazuh berseveritas high dan 15,732 berseveritas medium dengan memblokir IP sumber brute-force, menambal software rentan, dan menghapus software tidak resmi serta tidak berlisensi.',
+            en: 'Cleared 503 high-severity and 15,732 medium-severity Wazuh alerts by blocking source IPs of brute-force attempts, patching vulnerable software, and removing unauthorized and unlicensed software.',
+          },
+          {
+            id: 'Mendeteksi dan menghapus malware pada 2 perangkat yang lolos dari Avast boot-time scan, serta memblokir IP terkait, menggunakan Wazuh Malware Detection.',
+            en: 'Detected and removed malware on 2 devices that had bypassed Avast boot-time scans, and blocked the related IP, using Wazuh Malware Detection.',
+          },
+          {
+            id: 'Merancang dan men-deploy IDS berbasis Suricata yang terintegrasi langsung dengan MIT System, memantau 241 endpoint Windows di 4 site (Dinar Makmur Karawang, Dinar Makmur Cikarang, Sari Multi Utama Sentul, Head Office Central Park). Alert tampil di halaman MIT alert real-time, dan alert high-severity memicu notifikasi WhatsApp (WAHA).',
+            en: 'Designed and deployed a Suricata-based IDS integrated directly with the MIT System, monitoring 241 Windows endpoints across 4 sites (Dinar Makmur Karawang, Dinar Makmur Cikarang, Sari Multi Utama Sentul, Head Office Central Park). Alerts appear in a real-time MIT alert page, and high-severity alerts trigger WhatsApp (WAHA) notifications.',
+          },
+          {
+            id: 'Mengotomasi penegakan kebijakan IT preventif dengan membandingkan software terinstal terhadap blocklist/allowlist yang dikelola di MIT, lalu memunculkan alert untuk software tidak resmi dan koneksi mencurigakan.',
+            en: 'Automated preventive IT policy enforcement by comparing installed software against a blocklist/allowlist managed in MIT, raising alerts for unauthorized software and suspicious connections.',
+          },
+          {
+            id: 'Menyiapkan server IDS Linux (Suricata dengan suricata-update rules, gateway HTTPS dengan validasi token, Nginx reverse proxy dengan TLS, sinkronisasi NTP, retensi & rotasi pcap, alarm disk) dan API ingest terotentikasi ke backend MIT yang mencegah batch duplikat.',
+            en: 'Set up the Linux IDS server (Suricata with suricata-update rules, HTTPS gateway with token validation, Nginx reverse proxy with TLS, NTP sync, pcap retention and rotation, disk alarms) and an authenticated ingest API to the MIT backend that prevents duplicate batches.',
+          },
+          {
+            id: 'Menjalankan preventive security maintenance terjadwal di site operasional (kondisi hardware, legalitas lisensi software, status kerentanan, dan pengecekan malware) dengan Avast dan Wazuh agent.',
+            en: 'Ran scheduled preventive security maintenance across operational sites (hardware condition, software license legality, vulnerability status, and malware checks) with Avast and the Wazuh agent.',
+          },
+          {
+            id: 'Melakukan vulnerability assessment aplikasi web dengan Burp Suite dan OWASP ZAP pada MIT System, ERP SMU, dan HR DINARSMU, memetakan temuan ke OWASP Top 10 serta memperbaikinya.',
+            en: 'Performed web application vulnerability assessments with Burp Suite and OWASP ZAP on the MIT System, ERP SMU, and HR DINARSMU, mapping findings to OWASP Top 10 and fixing issues.',
+          },
+        ],
       },
       {
-        id: 'Menangani insiden jaringan dan internet melalui sistem tiket MIT (40 tiket internet di site Karawang saja).',
-        en: 'Handled network and internet incidents through the MIT ticketing system (40 internet tickets at the Karawang site alone).',
-      },
-      {
-        id: 'Merancang dan men-deploy sistem deteksi intrusi berbasis Suricata yang terintegrasi langsung dengan MIT System (ITSM), memantau 241 endpoint Windows di 4 site (PT Dinar Makmur Karawang, PT Dinar Makmur Cikarang, PT Sari Multi Utama Sentul, Head Office Central Park). Alert muncul di halaman MIT alert real-time, dan alert tingkat tinggi memicu notifikasi WhatsApp (WAHA).',
-        en: 'Designed and deployed a Suricata-based intrusion detection system integrated directly with the MIT System (ITSM), monitoring 241 Windows endpoints across 4 sites (PT Dinar Makmur Karawang, PT Dinar Makmur Cikarang, PT Sari Multi Utama Sentul, Head Office Central Park). Alerts appear in a real-time MIT alert page, and high-severity alerts trigger WhatsApp (WAHA) notifications.',
-      },
-      {
-        id: 'Membangun agent endpoint yang mengumpulkan IP, MAC, spesifikasi hardware, software terinstal, dan ringkasan koneksi dari setiap PC dan laptop, plus packet capture header-only dengan Windows pktmon, di-upload ke server IDS saat dipicu. Di-deploy via installer script dengan uninstall script untuk rollback.',
-        en: 'Built an endpoint agent that collects IP, MAC, hardware specs, installed software, and connection summaries from every PC and laptop, plus header-only packet capture with Windows pktmon, uploaded to the IDS server when triggered. Deployed via installer script with uninstall scripts for rollback.',
-      },
-      {
-        id: 'Mengotomasi penegakan kebijakan IT preventif: membandingkan software terinstal dengan blocklist/allowlist yang dikelola di MIT, dan memunculkan alert untuk software tidak resmi dan koneksi mencurigakan.',
-        en: 'Automated preventive IT policy enforcement: compared installed software against a blocklist/allowlist managed in MIT, and raised alerts for unauthorized software and suspicious connections.',
-      },
-      {
-        id: 'Setup server IDS Linux (Suricata dengan rule suricata-update, gateway HTTPS dengan validasi token, Nginx reverse proxy dengan TLS, sinkronisasi NTP, retensi & rotasi pcap, alarm disk) dan API ingest terotentikasi ke backend MIT yang mencegah batch duplikat.',
-        en: 'Set up the Linux IDS server (Suricata with suricata-update rules, HTTPS gateway with token validation, Nginx reverse proxy with TLS, NTP sync, pcap retention and rotation, disk alarms) and an authenticated ingest API to the MIT backend that prevents duplicate batches.',
-      },
-      {
-        id: 'Menekan downtime layanan IT ~40% (Des 2025–Sep) dengan mendigitalisasi alur intake-to-resolution di seluruh site.',
-        en: 'Cut IT service downtime ~40% (Dec 2025–Sep) by digitizing the ticket intake-to-resolution workflow across all 6 sites.',
-      },
-      {
-        id: 'Mencapai 92% penyelesaian IT assessment (49 dari 53) dengan mengganti follow-up manual menjadi pipeline tracking Received → Completed.',
-        en: 'Achieved a 92% completion rate on IT assessment requests (49 of 53) by replacing manual follow-ups with a Received → Completed tracking pipeline.',
-      },
-      {
-        id: 'Mencapai 92% penyelesaian service request (47 dari 51) di 6 site — termasuk 100% di site sekitar Karawang dan Sentul — dengan memberi tiap site manager visibilitas real-time status open vs. completed.',
-        en: 'Achieved a 92% completion rate on service requests (47 of 51) across 6 sites — including 100% at Karawang-adjacent sites and Sentul — by giving each site manager real-time visibility into open vs. completed work.',
-      },
-      {
-        id: 'Menyelesaikan 550 masalah keamanan endpoint dan compliance di 243 perangkat (118 laptop, 125 PC) dengan memantau Wazuh Vulnerability Detection dan Threat Hunting, serta mengkoordinasikan update aplikasi, OS, dan sistem internal.',
-        en: 'Resolved 550 endpoint security and compliance issues across 243 devices (118 laptops, 125 PCs) by monitoring Wazuh Vulnerability Detection and Threat Hunting, and coordinating application, OS, and internal-system updates.',
-      },
-      {
-        id: 'Mendeteksi dan menghapus malware di 2 perangkat yang lolos scan Avast boot-time, dengan Wazuh Malware Detection untuk mengidentifikasi dan meremediasinya.',
-        en: 'Detected and removed malware on 2 devices that had bypassed Avast boot-time scans, by using Wazuh Malware Detection to identify and remediate them.',
-      },
-      {
-        id: 'Menjalankan preventive maintenance terjadwal di seluruh site operasional, mencakup kondisi hardware, legalitas lisensi software, status vulnerability, dan pengecekan malware, menggunakan Avast dan Wazuh agent.',
-        en: 'Ran scheduled preventive maintenance across operational sites, covering hardware condition, software license legality, vulnerability status, and malware checks, using Avast and the Wazuh agent.',
-      },
-      {
-        id: 'Menstandarisasi setup network/OS/backup di seluruh site memakai template terdokumentasi Mikrotik, VLAN, dan OS-deployment, memangkas setup site/perangkat baru dari hitungan hari ke jam.',
-        en: 'Standardized network/OS/backup setup across sites with documented Mikrotik, VLAN, and OS-deployment templates, cutting new-site/new-device setup from days to hours.',
-      },
-    ],
-    achievements: [
-      {
-        id: 'Merancang dan membangun MIT System dari nol — mencakup IT Asset Management, Ticketing & Incident Management, Assessment, Service Request, Work Order (SPK), dan Software License Management — kini jadi single operational platform untuk 6 site.',
-        en: 'Designed and built the MIT System from scratch — covering IT Asset Management, Ticketing & Incident Management, Assessments, Service Requests, Work Orders (SPK), and Software License Management — now the single operational platform used by all 6 sites.',
-      },
-      {
-        id: 'Implementasi sistem IDS Suricata terintegrasi dengan MIT System — memantau 241 endpoint Windows, real-time alerts di halaman MIT, dan WhatsApp notifications untuk alert high-severity.',
-        en: 'Implemented Suricata-based IDS integrated with MIT System — monitoring 241 Windows endpoints, real-time alerts on MIT alert page, and WhatsApp notifications for high-severity alerts.',
-      },
-      {
-        id: 'Implementasi Wazuh agent di 118 laptop dan 125 PC — memberi IT visibilitas terpusat atas vulnerability, threat, dan malware pada endpoint perusahaan.',
-        en: 'Implemented Wazuh agent across 118 laptops and 125 PCs — giving IT centralized visibility into vulnerabilities, threats, and malware on company endpoints.',
-      },
-      {
-        id: 'Mengurangi downtime layanan IT ~40% (Des 2025–Sep) lewat digitalisasi proses IT dan implementasi platform manajemen terpadu.',
-        en: 'Reduced IT service downtime by approximately 40% through the digitalization of IT service processes and implementation of an integrated IT management platform.',
-      },
-      {
-        id: 'Meningkatkan transparansi operasional, efisiensi layanan, dan tata kelola IT lewat MIT System dengan dokumentasi terpusat dan standar proses IT service.',
-        en: 'Improved operational transparency, service efficiency, and IT governance by implementing the MIT System with centralized documentation and standardized IT service workflows.',
-      },
-      {
-        id: 'Menutup 92% IT assessment (49/53) dan 92% service request (47/51) di 6 site, dengan Karawang dan Sentul mencapai near-full completion, lewat pipeline Received → Completed yang menggantikan pengecekan status manual per site.',
-        en: 'Closed 92% of IT assessment requests (49/53) and 92% of service requests (47/51) across 6 sites, with Karawang and Sentul reaching near-full completion, via a centralized Received → Completed pipeline replacing manual per-site status checks.',
-      },
-      {
-        id: 'Menangani 214 tiket lintas hardware, software, OS, dan internet dengan volume tertinggi di Karawang — diselesaikan tanpa engineer on-site di tiap lokasi.',
-        en: 'Handled 214 tickets company-wide across hardware, software, OS, and internet categories, with Karawang carrying the highest volume — resolved without a dedicated on-site engineer at every location.',
-      },
-      {
-        id: 'Diakui sebagai sole technical owner untuk standardisasi IT lintas site; MIT System kini jadi acuan untuk IT governance, SLA tracking, dan kepatuhan aset.',
-        en: 'Recognized as the sole technical owner for cross-site IT standardization, with the MIT System now the reference platform for IT governance, SLA tracking, and asset compliance.',
-      },
-      {
-        id: 'Menyelesaikan 550 issue keamanan endpoint dan compliance di 243 perangkat (118 laptop, 125 PC) melalui Wazuh Vulnerability Detection dan Threat Hunting.',
-        en: 'Resolved 550 endpoint security and compliance issues across 243 devices (118 laptops, 125 PCs) by monitoring Wazuh Vulnerability Detection and Threat Hunting.',
-      },
-      {
-        id: 'Mendeteksi dan menghapus malware di 2 device yang lolos Avast boot-time scan menggunakan Wazuh Malware Detection.',
-        en: 'Detected and removed malware on 2 devices that bypassed Avast boot-time scans using Wazuh Malware Detection.',
-      },
-      {
-        id: 'MIT System: In-house platform for IT management (Ticketing, Assets, Service Requests, SPK, License Mgt).',
-        en: 'MIT System: In-house platform for IT management (Ticketing, Assets, Service Requests, SPK, License Mgt).',
+        heading: {
+          id: 'ITSM Development & IT Operations (6 site)',
+          en: 'ITSM Development & IT Operations (6 sites)',
+        },
+        items: [
+          {
+            id: 'Membangun MIT System dari nol — platform ITSM full-stack (ticketing & incident management, asset management, assessment, service request, work order/SPK, dan software license management) yang menggantikan spreadsheet, WhatsApp, dan email di 6 site; melalui platform ini, 214 tiket hardware, software, OS, dan jaringan terselesaikan.',
+            en: 'Developed the MIT System from scratch, a full-stack ITSM platform (ticketing and incident management, asset management, assessments, service requests, work orders/SPK, software license management) replacing spreadsheets, WhatsApp, and email across 6 sites, through which 214 hardware, software, OS, and network tickets were resolved.',
+          },
+          {
+            id: 'Menurunkan downtime layanan IT ~40% dengan mendigitalisasi alur intake-to-resolution di seluruh 6 site.',
+            en: 'Cut IT service downtime ~40% by digitizing the ticket intake-to-resolution workflow across all 6 sites.',
+          },
+          {
+            id: 'Menutup 100% IT assessment di Karawang (27/27) dan Sentul (11/11), serta 94% service request di Karawang (32/34), melalui pipeline Received → Completed yang memberi setiap site manager visibilitas real-time atas pekerjaan open vs. completed.',
+            en: 'Closed 100% of IT assessments at Karawang (27/27) and Sentul (11/11), and 94% of service requests at Karawang (32/34), through a Received → Completed tracking pipeline that gives each site manager real-time visibility into open vs. completed work.',
+          },
+          {
+            id: 'Menangani insiden jaringan dan internet melalui sistem tiket MIT, termasuk 40 tiket internet di site Karawang saja.',
+            en: 'Handled network and internet incidents through the MIT ticketing system, including 40 internet tickets at the Karawang site alone.',
+          },
+        ],
       },
     ],
-    tags: ['MIT System', 'ITSM', '6-Site Ops', 'Network Security', 'IDS', 'Suricata', 'Wazuh', 'Mikrotik', 'VLAN', 'Linux Server', 'Windows Server', 'ITIL', 'Asset Management', 'SLA Tracking', 'ISO 27001'],
-    impact: { id: '214 tiket · 550 security issues · 92% SLA · Downtime ↓~40% · IDS & Wazuh Integrated', en: '214 tickets · 550 security issues · 92% SLA · Downtime ↓~40% · IDS & Wazuh Integrated' },
+    tags: [
+      'Wazuh',
+      'Suricata IDS',
+      'Vulnerability Management',
+      'Burp Suite',
+      'OWASP ZAP',
+      'MIT System',
+      'ITSM',
+      'Mikrotik',
+      'VLAN',
+      'L2TP VPN',
+      'SOAR (in development)',
+    ],
+    impact: {
+      id: '550 kerentanan terselesaikan · 503 high + 15,732 medium alert dibersihkan · Suricata IDS terintegrasi dengan ITSM internal · downtime turun ~40%',
+      en: '550 vulnerabilities resolved · 503 high + 15,732 medium alerts cleared · Suricata IDS integrated with in-house ITSM · downtime down ~40%',
+    },
     impactIcon: 'Trophy',
     link: {
       href: '/mit',
